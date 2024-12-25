@@ -1,0 +1,350 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  // previewFeatures = ["omitApi"]
+}
+
+// TODO: Login
+model Login {
+  id       Int        @id @default(autoincrement())
+  type     LoginEnum
+  username String
+  password String
+  user     User[]
+  customer Customer[]
+
+  @@unique([type, username])
+  @@index([type])
+  @@map("login")
+}
+
+// TODO: User
+
+model User {
+  id          Int      @id @default(autoincrement())
+  displayname String
+  phone       String
+  email       String
+  login       Login?   @relation(fields: [loginId], references: [id])
+  loginId     Int?
+  Role        Role?    @relation(fields: [roleId], references: [id])
+  roleId      Int?
+  Company     Company? @relation(fields: [companyId], references: [id])
+  companyId   Int?
+  Gym         Gym?     @relation(fields: [gymId], references: [id])
+  gymId       Int?
+
+  @@map("user")
+}
+
+// TODO: Role
+
+
+model Role {
+    id   Int    @id @default(autoincrement())
+    name String @unique
+    user User[]
+
+    createdAt      DateTime?        @default(now())
+    updatedAt      DateTime?        @updatedAt
+    comment        String?
+    byId           Int?
+    isActive       Boolean          @default(true)
+    RolePermission RolePermission[]
+
+    @@map("role")
+}
+
+model RolePermission {
+    role         Role       @relation(fields: [roleId], references: [id])
+    permission   Permission @relation(fields: [permissionId], references: [id])
+    roleId       Int
+    permissionId Int
+
+    @@id([roleId, permissionId])
+    @@map("role_permission")
+}
+
+model Permission {
+    id       Int                  @id @default(autoincrement())
+    code     String               @unique
+    comment  String?
+    module   Module               @relation(fields: [moduleId], references: [id])
+    moduleId Int
+    action   PermissionActionEnum
+
+    byId           Int?
+    RolePermission RolePermission[]
+
+    @@map("permission")
+}
+
+// TODO: Module
+
+model Module {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  Permission Permission[]
+
+  @@map("module")
+}
+
+// TODO: Permission
+
+
+
+// TODO: Company
+
+model Company {
+  id           Int        @id @default(autoincrement())
+  name         String     @unique
+  address      String?
+  latitude     String?
+  longitude    String?
+  wallet       EntityBase @relation(fields: [walletBaseId], references: [id])
+  gym          Gym[]
+  walletBaseId Int        @unique
+  createdAt    DateTime?  @default(now())
+  updatedAt    DateTime?  @updatedAt
+  user         User[]
+  card         Card[]
+  companyId    Int?
+
+  @@map("company")
+}
+
+// TODO: Gym
+
+model Gym {
+  id           Int         @id @default(autoincrement())
+  name         String      @unique
+  address      String?
+  latitude     String?
+  longitude    String?
+  company      Company     @relation(fields: [companyId], references: [id])
+  companyId    Int
+  createdAt    DateTime?   @default(now())
+  updatedAt    DateTime?   @updatedAt
+  byId         Int?
+  walletBase   EntityBase? @relation(fields: [walletBaseId], references: [id])
+  coach        Coach[]
+  user         User[]
+  card         Card[]
+  isActive     Boolean     @default(false)
+  walletBaseId Int?        @unique
+
+  @@map("gym")
+}
+
+// TODO: Coach
+
+model Coach {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  address   String?
+  comment   String?
+  phone     String?
+  gym       Gym        @relation(fields: [gymId], references: [id])
+  activity  Activity[] @relation("caoch_activity")
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
+  byId      Int?
+  gymId     Int
+  isActive  Boolean    @default(false)
+
+  @@map("coach")
+}
+
+// TODO: CoachActivity
+// TODO: Activity
+
+model Activity {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  coach Coach[] @relation("caoch_activity")
+
+  isActive Boolean @default(false)
+
+  @@map("activity")
+}
+
+// DONE : model EntityBase 
+
+model EntityBase {
+  id              Int              @id @default(autoincrement())
+  type            EntityEnum
+  Company         Company?
+  fromTransaction Transaction[]    @relation(name: "from_transaction")
+  toTransaction   Transaction[]    @relation(name: "to_transaction")
+  walletStatus    WalletStatus[]
+  gym             Gym?
+  fromAllocation  CardAllocation[] @relation(name: "from_allocation")
+  toAllocation    CardAllocation[] @relation(name: "to_allocation")
+  fromRequest     CardRequest[]    @relation(name: "from_card_request")
+  toRequest       CardRequest[]    @relation(name: "to_card_request")
+
+  @@map("entity_base")
+}
+
+// TODO: WalletStatus
+
+model WalletStatus {
+  id           Int        @id @default(autoincrement())
+  walletBase   EntityBase @relation(fields: [walletBaseId], references: [id])
+  totalDebit   Decimal
+  totalCredit  Decimal
+  walletBaseId Int
+  createdAt    DateTime?  @default(now())
+
+  @@map("wallet_status")
+}
+
+// TODO: Transaction
+model Transaction {
+  id           Int        @id @default(autoincrement())
+  from         EntityBase @relation(name: "from_transaction", fields: [fromId], references: [id])
+  to           EntityBase @relation(name: "to_transaction", fields: [toId], references: [id])
+  fromId       Int
+  toId         Int
+  amount       Decimal
+  createdAt    DateTime?  @default(now())
+  updatedAt    DateTime?  @updatedAt
+  walletBaseId Int?
+
+  @@map("transaction")
+}
+
+// TODO:Membership
+model Membership {
+  id         Int      @id @default(autoincrement())
+  customer   Customer @relation(fields: [customerId], references: [id])
+  startDate  DateTime
+  endDate    DateTime
+  createdAt  DateTime
+  byId       Int
+  plan       Plan     @relation(fields: [planId], references: [id])
+  planId     Int
+  customerId Int
+
+  @@map("membership")
+}
+
+//TODO: Plan
+model Plan {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  duration   Int
+  commtent   String
+  Membership Membership[]
+
+  @@map("plan")
+}
+
+// TODO: Customer
+model Customer {
+  id          Int          @id @default(autoincrement())
+  displayname String
+  phone       String
+  createdAt   DateTime?    @default(now())
+  updatedAt   DateTime?    @updatedAt
+  byId        Int?
+  login       Login        @relation(fields: [loginId], references: [id])
+  loginId     Int
+  Assignment  Assignment[]
+  Membership  Membership[]
+
+  @@map("customer")
+}
+
+// TODO: Card
+
+model Card {
+  id             Int              @id @default(autoincrement())
+  serial         String
+  createdAt      DateTime?        @default(now())
+  updatedAt      DateTime?        @updatedAt
+  company        Company          @relation(fields: [companyId], references: [id])
+  gym            Gym              @relation(fields: [gymId], references: [id])
+  byId           Int?
+  companyId      Int
+  gymId          Int
+  cardAllocation CardAllocation[] @relation("CardAllocationDetails")
+
+  Assignment Assignment[]
+
+  @@map("card")
+}
+
+// TODO: Assignment
+
+model Assignment {
+  card       Card     @relation(fields: [cardId], references: [id])
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+  cardId     Int
+  status     Boolean
+  byId       Int
+
+  @@id([cardId, customerId])
+  @@map("assignment")
+}
+
+// TODO: CardAllocation
+
+model CardAllocation {
+  id     Int        @id @default(autoincrement())
+  label  String
+  from   EntityBase @relation(name: "from_allocation", fields: [fromId], references: [id])
+  to     EntityBase @relation(name: "to_allocation", fields: [toId], references: [id])
+  card   Card[]     @relation("CardAllocationDetails")
+  fromId Int
+  toId   Int
+
+  @@map("card_allocation")
+}
+
+// TODO: CardRequest
+
+model CardRequest {
+  id     Int             @id @default(autoincrement())
+  label  String
+  from   EntityBase      @relation(name: "from_card_request", fields: [fromId], references: [id])
+  to     EntityBase      @relation(name: "to_card_request", fields: [toId], references: [id])
+  fromId Int
+  toId   Int
+  status CardRequestEnum
+
+  @@map("card_request")
+}
+
+// Enumeration==============================================================
+enum PermissionActionEnum {
+  ALL
+  CREATE
+  READ
+  UPDATE
+  DETAILS
+  SELF
+}
+
+enum EntityEnum {
+  Company
+  Customer
+  Gym
+}
+
+enum CardRequestEnum {
+  PENDING
+  ACCEPTED
+  REFUSED
+}
+
+enum LoginEnum {
+  CUSTOMER
+  USER
+}
