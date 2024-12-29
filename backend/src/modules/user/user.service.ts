@@ -1,20 +1,27 @@
-import { LoginEnum, Prisma } from '@prisma/client';
+import { LoginEnum } from 'prisma/types';
 import { DatabaseService } from '../database/database.service';
 import { Injectable } from '@nestjs/common';
+import { UserDto } from 'src/dto/user.dto';
+import { CryptoService } from 'src/utils/crypto_service';
+import { excludeFields } from 'src/utils/exclude_key';
 @Injectable()
 export class UserService {
-  constructor(private db: DatabaseService) {}
-  create(body: Omit<Prisma.UserCreateInput, ''>) {
+  constructor(
+    private db: DatabaseService,
+    private crypto: CryptoService,
+  ) {}
+  create(body: UserDto) {
     console.log(body);
     return this.db.user
       .create({
         data: {
-          ...body,
+          ...excludeFields(body, ['password', 'roleId']),
           login: {
             create: {
               username: body.phone,
               type: LoginEnum.USER,
-              password: '',
+              roleId: body.roleId,
+              password: this.crypto.createHash(body.password),
             },
           },
         },
@@ -30,18 +37,10 @@ export class UserService {
         };
       });
   }
-  getDefaultResultOrder() {
+  getAll() {
     return this.db.user.findMany({
       include: { login: { select: { username: true } } },
-      where: {
-        Company: {
-          NOT: [
-            { card: { some: { id: { not: { equals: 1 } } } } },
-            { card: {} },
-          ],
-        },
-      },
-      cursor: { login: { id: 1 }, id: 2 },
+      where: {},
     });
   }
 }

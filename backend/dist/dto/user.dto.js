@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserDto = void 0;
-const Allow_1 = require("class-validator/types/decorator/common/Allow");
 const IsNotEmpty_1 = require("class-validator/types/decorator/common/IsNotEmpty");
+const decorators_1 = require("class-validator/types/decorator/decorators");
 const IsEmail_1 = require("class-validator/types/decorator/string/IsEmail");
 const IsPhoneNumber_1 = require("class-validator/types/decorator/string/IsPhoneNumber");
 const IsNumber_1 = require("class-validator/types/decorator/typechecker/IsNumber");
@@ -23,7 +23,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserDto.prototype, "displayname", void 0);
 __decorate([
-    (0, Allow_1.Allow)(),
+    (0, decorators_1.Allow)(),
+    __metadata("design:type", String)
+], UserDto.prototype, "password", void 0);
+__decorate([
     (0, IsPhoneNumber_1.IsPhoneNumber)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "phone", void 0);

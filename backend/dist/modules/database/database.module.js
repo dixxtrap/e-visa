@@ -10,6 +10,7 @@ exports.DatabaseModule = void 0;
 const module_decorator_1 = require("@nestjs/common/decorators/modules/module.decorator");
 const database_service_1 = require("./database.service");
 const common_1 = require("@nestjs/common");
+const crypto_service_1 = require("../../utils/crypto_service");
 let DatabaseModule = class DatabaseModule {
 };
 exports.DatabaseModule = DatabaseModule;
@@ -17,8 +18,8 @@ exports.DatabaseModule = DatabaseModule = __decorate([
     (0, common_1.Global)(),
     (0, module_decorator_1.Module)({
         imports: [],
-        providers: [database_service_1.DatabaseService],
-        exports: [database_service_1.DatabaseService],
+        providers: [database_service_1.DatabaseService, crypto_service_1.CryptoService],
+        exports: [database_service_1.DatabaseService, crypto_service_1.CryptoService],
     })
 ], DatabaseModule);
 //# sourceMappingURL=database.module.js.map

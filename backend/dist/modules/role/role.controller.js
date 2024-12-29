@@ -18,6 +18,8 @@ const role_service_1 = require("./role.service");
 const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
 const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/request-mapping.decorator");
 const role_dto_1 = require("../../dto/role.dto");
+const exception_catch_1 = require("../../exception/exception_catch");
+const exception_filters_decorator_1 = require("@nestjs/common/decorators/core/exception-filters.decorator");
 let RoleController = class RoleController {
     constructor(service) {
         this.service = service;
@@ -25,6 +27,9 @@ let RoleController = class RoleController {
     create(body) {
         console.log(body);
         return this.service.create(body);
+    }
+    getAll() {
+        return this.service.getAll();
     }
     update(body) {
         console.log(body);
@@ -40,6 +45,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RoleController.prototype, "create", null);
 __decorate([
+    (0, request_mapping_decorator_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], RoleController.prototype, "getAll", null);
+__decorate([
     (0, request_mapping_decorator_1.Post)(),
     __param(0, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
@@ -47,6 +58,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RoleController.prototype, "update", null);
 exports.RoleController = RoleController = __decorate([
+    (0, exception_filters_decorator_1.UseFilters)(exception_catch_1.HttpExceptionFilter),
     (0, controller_decorator_1.Controller)('role'),
     __metadata("design:paramtypes", [role_service_1.RoleService])
 ], RoleController);

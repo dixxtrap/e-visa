@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PermissionDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const client_1 = require("@prisma/client");
+const types_1 = require("../../prisma/types/index.js");
 const class_validator_1 = require("class-validator");
 const IsNotEmpty_1 = require("class-validator/types/decorator/common/IsNotEmpty");
 const IsNumber_1 = require("class-validator/types/decorator/typechecker/IsNumber");
@@ -29,7 +29,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PermissionDto.prototype, "byId", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(client_1.$Enums.PermissionActionEnum),
+    (0, class_validator_1.IsEnum)(types_1.$Enums.PermissionActionEnum),
     __metadata("design:type", String)
 ], PermissionDto.prototype, "action", void 0);
 __decorate([

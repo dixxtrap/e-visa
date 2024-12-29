@@ -16,13 +16,29 @@ let RoleService = class RoleService {
     constructor(db) {
         this.db = db;
     }
-    create(body) {
-        return this.db.role.create({ data: body }).catch((err) => {
-            console.log(err);
-            if (err.code && err.code == 'P2002') {
-                return err;
-            }
+    onModuleInit() {
+        this.createAdminRole();
+    }
+    createAdminRole() {
+        console.log('=========create role adsmin=============');
+        return this.db.role
+            .upsert({
+            create: { name: 'super_admin' },
+            update: {},
+            where: { name: 'super_admin' },
+        })
+            .then((val) => {
+            console.log(val);
+        })
+            .catch((error) => {
+            console.log(error);
         });
+    }
+    getAll() {
+        return this.db.role.findMany();
+    }
+    create(body) {
+        return this.db.role.create({ data: body });
     }
 };
 exports.RoleService = RoleService;

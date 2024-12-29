@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { $Enums, Permission } from '@prisma/client';
+import { $Enums, Permission } from 'prisma/types';
 import { IsEnum } from 'class-validator';
 import { IsNotEmpty } from 'class-validator/types/decorator/common/IsNotEmpty';
 import { IsNumber } from 'class-validator/types/decorator/typechecker/IsNumber';

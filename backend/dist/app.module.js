@@ -14,12 +14,19 @@ const user_module_1 = require("./modules/user/user.module");
 const database_module_1 = require("./modules/database/database.module");
 const module_module_1 = require("./modules/module/module.module");
 const role_module_1 = require("./modules/role/role.module");
+const permission_module_1 = require("./modules/permission/permission.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [database_module_1.DatabaseModule, module_module_1.ModuleModule, role_module_1.RoleModule, user_module_1.UserModule],
+        imports: [
+            database_module_1.DatabaseModule,
+            module_module_1.ModuleModule,
+            role_module_1.RoleModule,
+            permission_module_1.PermissionModule,
+            user_module_1.UserModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

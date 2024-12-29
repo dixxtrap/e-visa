@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseService = void 0;
 const injectable_decorator_1 = require("@nestjs/common/decorators/core/injectable.decorator");
-const client_1 = require("@prisma/client");
-let DatabaseService = class DatabaseService extends client_1.PrismaClient {
+const types_1 = require("../../../prisma/types/index.js");
+let DatabaseService = class DatabaseService extends types_1.PrismaClient {
     async onModuleInit() {
         await this.$connect();
     }

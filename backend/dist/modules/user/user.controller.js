@@ -15,9 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const controller_decorator_1 = require("@nestjs/common/decorators/core/controller.decorator");
 const user_service_1 = require("./user.service");
-const client_1 = require("@prisma/client");
 const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/request-mapping.decorator");
 const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
+const exception_catch_1 = require("../../exception/exception_catch");
+const exception_filters_decorator_1 = require("@nestjs/common/decorators/core/exception-filters.decorator");
+const ws_message_1 = require("../../exception/ws_message");
+const user_dto_1 = require("../../dto/user.dto");
 let UserController = class UserController {
     constructor(userServide) {
         this.userServide = userServide;
@@ -25,8 +28,11 @@ let UserController = class UserController {
     create(body) {
         return this.userServide.create(body);
     }
-    getAll(body) {
-        return this.userServide.create(body);
+    getById() {
+        throw new ws_message_1.WsMessage(ws_message_1.HttpExceptionCode.SUCCEEDED);
+    }
+    getAll() {
+        return this.userServide.getAll();
     }
 };
 exports.UserController = UserController;
@@ -34,14 +40,20 @@ __decorate([
     (0, request_mapping_decorator_1.Post)(),
     __param(0, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, request_mapping_decorator_1.Get)(),
-    __param(0, (0, route_params_decorator_1.Body)()),
+    (0, request_mapping_decorator_1.Get)('id'),
+    (0, exception_filters_decorator_1.UseFilters)(exception_catch_1.HttpExceptionFilter),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "getById", null);
+__decorate([
+    (0, request_mapping_decorator_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getAll", null);
 exports.UserController = UserController = __decorate([

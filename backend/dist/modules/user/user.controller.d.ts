@@ -1,46 +1,40 @@
 import { UserService } from './user.service';
-import { Prisma } from '@prisma/client';
+import { UserDto } from 'src/dto/user.dto';
 export declare class UserController {
     private readonly userServide;
     constructor(userServide: UserService);
-    create(body: Prisma.UserCreateInput): Promise<({
+    create(body: UserDto): Promise<({
         login: {
             id: number;
-            type: import(".prisma/client").$Enums.LoginEnum;
-            username: string;
             password: string;
+            roleId: number | null;
+            type: import("prisma/types").$Enums.LoginEnum;
+            username: string;
         };
     } & {
         id: number;
         displayname: string;
         phone: string;
         email: string;
-        loginId: number | null;
-        roleId: number | null;
         companyId: number | null;
         gymId: number | null;
+        loginId: number | null;
     }) | {
         meta: any;
         messages: string;
     }>;
-    getAll(body: Prisma.UserCreateInput): Promise<({
+    getById(): void;
+    getAll(): import("prisma/types").Prisma.PrismaPromise<({
         login: {
-            id: number;
-            type: import(".prisma/client").$Enums.LoginEnum;
             username: string;
-            password: string;
         };
     } & {
         id: number;
         displayname: string;
         phone: string;
         email: string;
-        loginId: number | null;
-        roleId: number | null;
         companyId: number | null;
         gymId: number | null;
-    }) | {
-        meta: any;
-        messages: string;
-    }>;
+        loginId: number | null;
+    })[]>;
 }

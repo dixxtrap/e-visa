@@ -1,5 +1,5 @@
 import { PermissionDto } from './permission.dto';
-import { Role } from '@prisma/client';
+import { Role } from 'prisma/types';
 export declare class RoleDto implements Partial<Role> {
     name: string;
     comment: string;

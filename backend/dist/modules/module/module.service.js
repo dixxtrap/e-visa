@@ -22,7 +22,7 @@ let ModuleService = class ModuleService {
     getTable() {
         this.prismaService.$queryRaw `SELECT table_name as name
     FROM information_schema.tables
-    WHERE table_schema = 'okul'
+    WHERE table_schema = 'e-visa'
       AND table_type = 'BASE TABLE';`.then((val) => {
             console.log(val);
             Promise.all(val.map((e) => {
