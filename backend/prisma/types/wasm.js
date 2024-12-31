@@ -128,7 +128,8 @@ exports.Prisma.LoginScalarFieldEnum = {
 exports.Prisma.IconScalarFieldEnum = {
   id: 'id',
   path: 'path',
-  code: 'code'
+  code: 'code',
+  comment: 'comment'
 };
 
 exports.Prisma.CustomerScalarFieldEnum = {
@@ -174,8 +175,7 @@ exports.Prisma.UserScalarFieldEnum = {
   displayname: 'displayname',
   phone: 'phone',
   email: 'email',
-  companyId: 'companyId',
-  gymId: 'gymId',
+  address: 'address',
   loginId: 'loginId'
 };
 
@@ -261,7 +261,8 @@ exports.Prisma.LoginOrderByRelevanceFieldEnum = {
 
 exports.Prisma.IconOrderByRelevanceFieldEnum = {
   path: 'path',
-  code: 'code'
+  code: 'code',
+  comment: 'comment'
 };
 
 exports.Prisma.CustomerOrderByRelevanceFieldEnum = {
@@ -290,7 +291,8 @@ exports.Prisma.RoadTripInfoOrderByRelevanceFieldEnum = {
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
   displayname: 'displayname',
   phone: 'phone',
-  email: 'email'
+  email: 'email',
+  address: 'address'
 };
 
 exports.Prisma.RoleOrderByRelevanceFieldEnum = {

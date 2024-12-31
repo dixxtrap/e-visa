@@ -1,33 +1,32 @@
 import { RoleService } from './role.service';
-import { RoleDto } from 'src/dto/role.dto';
+import { RoleDto, RoleUpdateDto } from 'src/dto/role.dto';
 export declare class RoleController {
     private readonly service;
     constructor(service: RoleService);
     create(body: RoleDto): import("prisma/types").Prisma.Prisma__RoleClient<{
         name: string;
         id: number;
-        comment: string | null;
-        byId: number | null;
         createdAt: Date | null;
         updatedAt: Date | null;
+        comment: string | null;
+        byId: number | null;
         isActive: boolean;
     }, never, import("prisma/types/runtime/library").DefaultArgs>;
-    getAll(): import("prisma/types").Prisma.PrismaPromise<{
+    getAll(): Promise<import("../../utils/base_response").BaseResponse<({
+        rolePermission: {
+            permission: {
+                id: number;
+                code: string;
+            };
+        }[];
+    } & {
         name: string;
         id: number;
-        comment: string | null;
-        byId: number | null;
         createdAt: Date | null;
         updatedAt: Date | null;
-        isActive: boolean;
-    }[]>;
-    update(body: RoleDto): import("prisma/types").Prisma.Prisma__RoleClient<{
-        name: string;
-        id: number;
         comment: string | null;
         byId: number | null;
-        createdAt: Date | null;
-        updatedAt: Date | null;
         isActive: boolean;
-    }, never, import("prisma/types/runtime/library").DefaultArgs>;
+    })[]>>;
+    update(id: number, body: RoleUpdateDto): Promise<never>;
 }

@@ -2116,11 +2116,11 @@ export namespace Prisma {
    */
 
   export type RoadTripInfoCountOutputType = {
-    VisaRequest: number
+    visaRequest: number
   }
 
   export type RoadTripInfoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VisaRequest?: boolean | RoadTripInfoCountOutputTypeCountVisaRequestArgs
+    visaRequest?: boolean | RoadTripInfoCountOutputTypeCountVisaRequestArgs
   }
 
   // Custom InputTypes
@@ -2147,13 +2147,13 @@ export namespace Prisma {
    */
 
   export type RoleCountOutputType = {
-    RolePermission: number
-    Login: number
+    rolePermission: number
+    login: number
   }
 
   export type RoleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    RolePermission?: boolean | RoleCountOutputTypeCountRolePermissionArgs
-    Login?: boolean | RoleCountOutputTypeCountLoginArgs
+    rolePermission?: boolean | RoleCountOutputTypeCountRolePermissionArgs
+    login?: boolean | RoleCountOutputTypeCountLoginArgs
   }
 
   // Custom InputTypes
@@ -2187,11 +2187,11 @@ export namespace Prisma {
    */
 
   export type PermissionCountOutputType = {
-    RolePermission: number
+    rolePermission: number
   }
 
   export type PermissionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    RolePermission?: boolean | PermissionCountOutputTypeCountRolePermissionArgs
+    rolePermission?: boolean | PermissionCountOutputTypeCountRolePermissionArgs
   }
 
   // Custom InputTypes
@@ -2218,11 +2218,11 @@ export namespace Prisma {
    */
 
   export type ModuleCountOutputType = {
-    Permission: number
+    permission: number
   }
 
   export type ModuleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Permission?: boolean | ModuleCountOutputTypeCountPermissionArgs
+    permission?: boolean | ModuleCountOutputTypeCountPermissionArgs
   }
 
   // Custom InputTypes
@@ -2249,11 +2249,11 @@ export namespace Prisma {
    */
 
   export type ActivityCountOutputType = {
-    Customer: number
+    customer: number
   }
 
   export type ActivityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Customer?: boolean | ActivityCountOutputTypeCountCustomerArgs
+    customer?: boolean | ActivityCountOutputTypeCountCustomerArgs
   }
 
   // Custom InputTypes
@@ -2280,11 +2280,11 @@ export namespace Prisma {
    */
 
   export type VisaTypeCountOutputType = {
-    VisaRequest: number
+    visaRequest: number
   }
 
   export type VisaTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VisaRequest?: boolean | VisaTypeCountOutputTypeCountVisaRequestArgs
+    visaRequest?: boolean | VisaTypeCountOutputTypeCountVisaRequestArgs
   }
 
   // Custom InputTypes
@@ -2382,11 +2382,11 @@ export namespace Prisma {
    */
 
   export type LocationTypeCountOutputType = {
-    Location: number
+    location: number
   }
 
   export type LocationTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Location?: boolean | LocationTypeCountOutputTypeCountLocationArgs
+    location?: boolean | LocationTypeCountOutputTypeCountLocationArgs
   }
 
   // Custom InputTypes
@@ -2616,7 +2616,7 @@ export namespace Prisma {
     roleId?: boolean
     user?: boolean | Login$userArgs<ExtArgs>
     Customer?: boolean | Login$CustomerArgs<ExtArgs>
-    Role?: boolean | Login$RoleArgs<ExtArgs>
+    role?: boolean | Login$roleArgs<ExtArgs>
     _count?: boolean | LoginCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["login"]>
 
@@ -2632,7 +2632,7 @@ export namespace Prisma {
   export type LoginInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Login$userArgs<ExtArgs>
     Customer?: boolean | Login$CustomerArgs<ExtArgs>
-    Role?: boolean | Login$RoleArgs<ExtArgs>
+    role?: boolean | Login$roleArgs<ExtArgs>
     _count?: boolean | LoginCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2641,7 +2641,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>[]
       Customer: Prisma.$CustomerPayload<ExtArgs>[]
-      Role: Prisma.$RolePayload<ExtArgs> | null
+      role: Prisma.$RolePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2991,7 +2991,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends Login$userArgs<ExtArgs> = {}>(args?: Subset<T, Login$userArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     Customer<T extends Login$CustomerArgs<ExtArgs> = {}>(args?: Subset<T, Login$CustomerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany"> | Null>
-    Role<T extends Login$RoleArgs<ExtArgs> = {}>(args?: Subset<T, Login$RoleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    role<T extends Login$roleArgs<ExtArgs> = {}>(args?: Subset<T, Login$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3365,9 +3365,9 @@ export namespace Prisma {
   }
 
   /**
-   * Login.Role
+   * Login.role
    */
-  export type Login$RoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Login$roleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Role
      */
@@ -3418,18 +3418,21 @@ export namespace Prisma {
     id: number | null
     path: string | null
     code: string | null
+    comment: string | null
   }
 
   export type IconMaxAggregateOutputType = {
     id: number | null
     path: string | null
     code: string | null
+    comment: string | null
   }
 
   export type IconCountAggregateOutputType = {
     id: number
     path: number
     code: number
+    comment: number
     _all: number
   }
 
@@ -3446,18 +3449,21 @@ export namespace Prisma {
     id?: true
     path?: true
     code?: true
+    comment?: true
   }
 
   export type IconMaxAggregateInputType = {
     id?: true
     path?: true
     code?: true
+    comment?: true
   }
 
   export type IconCountAggregateInputType = {
     id?: true
     path?: true
     code?: true
+    comment?: true
     _all?: true
   }
 
@@ -3551,6 +3557,7 @@ export namespace Prisma {
     id: number
     path: string
     code: string
+    comment: string
     _count: IconCountAggregateOutputType | null
     _avg: IconAvgAggregateOutputType | null
     _sum: IconSumAggregateOutputType | null
@@ -3576,6 +3583,7 @@ export namespace Prisma {
     id?: boolean
     path?: boolean
     code?: boolean
+    comment?: boolean
   }, ExtArgs["result"]["icon"]>
 
 
@@ -3583,6 +3591,7 @@ export namespace Prisma {
     id?: boolean
     path?: boolean
     code?: boolean
+    comment?: boolean
   }
 
 
@@ -3593,6 +3602,7 @@ export namespace Prisma {
       id: number
       path: string
       code: string
+      comment: string
     }, ExtArgs["result"]["icon"]>
     composites: {}
   }
@@ -3965,6 +3975,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Icon", 'Int'>
     readonly path: FieldRef<"Icon", 'String'>
     readonly code: FieldRef<"Icon", 'String'>
+    readonly comment: FieldRef<"Icon", 'String'>
   }
     
 
@@ -5505,7 +5516,7 @@ export namespace Prisma {
     phone?: boolean
     customerId?: boolean
     visaRequestId?: boolean
-    VisaRequest?: boolean | contactInfo$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | contactInfo$visaRequestArgs<ExtArgs>
   }, ExtArgs["result"]["contactInfo"]>
 
 
@@ -5518,13 +5529,13 @@ export namespace Prisma {
   }
 
   export type contactInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VisaRequest?: boolean | contactInfo$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | contactInfo$visaRequestArgs<ExtArgs>
   }
 
   export type $contactInfoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "contactInfo"
     objects: {
-      VisaRequest: Prisma.$VisaRequestPayload<ExtArgs> | null
+      visaRequest: Prisma.$VisaRequestPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5872,7 +5883,7 @@ export namespace Prisma {
    */
   export interface Prisma__contactInfoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    VisaRequest<T extends contactInfo$VisaRequestArgs<ExtArgs> = {}>(args?: Subset<T, contactInfo$VisaRequestArgs<ExtArgs>>): Prisma__VisaRequestClient<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    visaRequest<T extends contactInfo$visaRequestArgs<ExtArgs> = {}>(args?: Subset<T, contactInfo$visaRequestArgs<ExtArgs>>): Prisma__VisaRequestClient<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6206,9 +6217,9 @@ export namespace Prisma {
   }
 
   /**
-   * contactInfo.VisaRequest
+   * contactInfo.visaRequest
    */
-  export type contactInfo$VisaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type contactInfo$visaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the VisaRequest
      */
@@ -6479,7 +6490,7 @@ export namespace Prisma {
     locationId?: boolean
     arrivalBy?: boolean | LocationDefaultArgs<ExtArgs>
     departureBy?: boolean | LocationDefaultArgs<ExtArgs>
-    VisaRequest?: boolean | RoadTripInfo$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | RoadTripInfo$visaRequestArgs<ExtArgs>
     _count?: boolean | RoadTripInfoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["roadTripInfo"]>
 
@@ -6499,7 +6510,7 @@ export namespace Prisma {
   export type RoadTripInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     arrivalBy?: boolean | LocationDefaultArgs<ExtArgs>
     departureBy?: boolean | LocationDefaultArgs<ExtArgs>
-    VisaRequest?: boolean | RoadTripInfo$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | RoadTripInfo$visaRequestArgs<ExtArgs>
     _count?: boolean | RoadTripInfoCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6508,7 +6519,7 @@ export namespace Prisma {
     objects: {
       arrivalBy: Prisma.$LocationPayload<ExtArgs>
       departureBy: Prisma.$LocationPayload<ExtArgs>
-      VisaRequest: Prisma.$VisaRequestPayload<ExtArgs>[]
+      visaRequest: Prisma.$VisaRequestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6862,7 +6873,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     arrivalBy<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     departureBy<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    VisaRequest<T extends RoadTripInfo$VisaRequestArgs<ExtArgs> = {}>(args?: Subset<T, RoadTripInfo$VisaRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findMany"> | Null>
+    visaRequest<T extends RoadTripInfo$visaRequestArgs<ExtArgs> = {}>(args?: Subset<T, RoadTripInfo$visaRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7200,9 +7211,9 @@ export namespace Prisma {
   }
 
   /**
-   * RoadTripInfo.VisaRequest
+   * RoadTripInfo.visaRequest
    */
-  export type RoadTripInfo$VisaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoadTripInfo$visaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the VisaRequest
      */
@@ -7248,15 +7259,11 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     id: number | null
-    companyId: number | null
-    gymId: number | null
     loginId: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
-    companyId: number | null
-    gymId: number | null
     loginId: number | null
   }
 
@@ -7265,8 +7272,7 @@ export namespace Prisma {
     displayname: string | null
     phone: string | null
     email: string | null
-    companyId: number | null
-    gymId: number | null
+    address: string | null
     loginId: number | null
   }
 
@@ -7275,8 +7281,7 @@ export namespace Prisma {
     displayname: string | null
     phone: string | null
     email: string | null
-    companyId: number | null
-    gymId: number | null
+    address: string | null
     loginId: number | null
   }
 
@@ -7285,8 +7290,7 @@ export namespace Prisma {
     displayname: number
     phone: number
     email: number
-    companyId: number
-    gymId: number
+    address: number
     loginId: number
     _all: number
   }
@@ -7294,15 +7298,11 @@ export namespace Prisma {
 
   export type UserAvgAggregateInputType = {
     id?: true
-    companyId?: true
-    gymId?: true
     loginId?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
-    companyId?: true
-    gymId?: true
     loginId?: true
   }
 
@@ -7311,8 +7311,7 @@ export namespace Prisma {
     displayname?: true
     phone?: true
     email?: true
-    companyId?: true
-    gymId?: true
+    address?: true
     loginId?: true
   }
 
@@ -7321,8 +7320,7 @@ export namespace Prisma {
     displayname?: true
     phone?: true
     email?: true
-    companyId?: true
-    gymId?: true
+    address?: true
     loginId?: true
   }
 
@@ -7331,8 +7329,7 @@ export namespace Prisma {
     displayname?: true
     phone?: true
     email?: true
-    companyId?: true
-    gymId?: true
+    address?: true
     loginId?: true
     _all?: true
   }
@@ -7428,8 +7425,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId: number | null
-    gymId: number | null
+    address: string | null
     loginId: number | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -7457,8 +7453,7 @@ export namespace Prisma {
     displayname?: boolean
     phone?: boolean
     email?: boolean
-    companyId?: boolean
-    gymId?: boolean
+    address?: boolean
     loginId?: boolean
     login?: boolean | User$loginArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -7469,8 +7464,7 @@ export namespace Prisma {
     displayname?: boolean
     phone?: boolean
     email?: boolean
-    companyId?: boolean
-    gymId?: boolean
+    address?: boolean
     loginId?: boolean
   }
 
@@ -7488,8 +7482,7 @@ export namespace Prisma {
       displayname: string
       phone: string
       email: string
-      companyId: number | null
-      gymId: number | null
+      address: string | null
       loginId: number | null
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -7865,8 +7858,7 @@ export namespace Prisma {
     readonly displayname: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
-    readonly companyId: FieldRef<"User", 'Int'>
-    readonly gymId: FieldRef<"User", 'Int'>
+    readonly address: FieldRef<"User", 'String'>
     readonly loginId: FieldRef<"User", 'Int'>
   }
     
@@ -8414,8 +8406,8 @@ export namespace Prisma {
     comment?: boolean
     byId?: boolean
     isActive?: boolean
-    RolePermission?: boolean | Role$RolePermissionArgs<ExtArgs>
-    Login?: boolean | Role$LoginArgs<ExtArgs>
+    rolePermission?: boolean | Role$rolePermissionArgs<ExtArgs>
+    login?: boolean | Role$loginArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["role"]>
 
@@ -8431,16 +8423,16 @@ export namespace Prisma {
   }
 
   export type RoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    RolePermission?: boolean | Role$RolePermissionArgs<ExtArgs>
-    Login?: boolean | Role$LoginArgs<ExtArgs>
+    rolePermission?: boolean | Role$rolePermissionArgs<ExtArgs>
+    login?: boolean | Role$loginArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $RolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Role"
     objects: {
-      RolePermission: Prisma.$RolePermissionPayload<ExtArgs>[]
-      Login: Prisma.$LoginPayload<ExtArgs>[]
+      rolePermission: Prisma.$RolePermissionPayload<ExtArgs>[]
+      login: Prisma.$LoginPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8790,8 +8782,8 @@ export namespace Prisma {
    */
   export interface Prisma__RoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    RolePermission<T extends Role$RolePermissionArgs<ExtArgs> = {}>(args?: Subset<T, Role$RolePermissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePermissionPayload<ExtArgs>, T, "findMany"> | Null>
-    Login<T extends Role$LoginArgs<ExtArgs> = {}>(args?: Subset<T, Role$LoginArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoginPayload<ExtArgs>, T, "findMany"> | Null>
+    rolePermission<T extends Role$rolePermissionArgs<ExtArgs> = {}>(args?: Subset<T, Role$rolePermissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePermissionPayload<ExtArgs>, T, "findMany"> | Null>
+    login<T extends Role$loginArgs<ExtArgs> = {}>(args?: Subset<T, Role$loginArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoginPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9127,9 +9119,9 @@ export namespace Prisma {
   }
 
   /**
-   * Role.RolePermission
+   * Role.rolePermission
    */
-  export type Role$RolePermissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Role$rolePermissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the RolePermission
      */
@@ -9147,9 +9139,9 @@ export namespace Prisma {
   }
 
   /**
-   * Role.Login
+   * Role.login
    */
-  export type Role$LoginArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Role$loginArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Login
      */
@@ -10284,7 +10276,7 @@ export namespace Prisma {
     action?: boolean
     byId?: boolean
     module?: boolean | ModuleDefaultArgs<ExtArgs>
-    RolePermission?: boolean | Permission$RolePermissionArgs<ExtArgs>
+    rolePermission?: boolean | Permission$rolePermissionArgs<ExtArgs>
     _count?: boolean | PermissionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["permission"]>
 
@@ -10300,7 +10292,7 @@ export namespace Prisma {
 
   export type PermissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     module?: boolean | ModuleDefaultArgs<ExtArgs>
-    RolePermission?: boolean | Permission$RolePermissionArgs<ExtArgs>
+    rolePermission?: boolean | Permission$rolePermissionArgs<ExtArgs>
     _count?: boolean | PermissionCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10308,7 +10300,7 @@ export namespace Prisma {
     name: "Permission"
     objects: {
       module: Prisma.$ModulePayload<ExtArgs>
-      RolePermission: Prisma.$RolePermissionPayload<ExtArgs>[]
+      rolePermission: Prisma.$RolePermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10658,7 +10650,7 @@ export namespace Prisma {
   export interface Prisma__PermissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     module<T extends ModuleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModuleDefaultArgs<ExtArgs>>): Prisma__ModuleClient<$Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    RolePermission<T extends Permission$RolePermissionArgs<ExtArgs> = {}>(args?: Subset<T, Permission$RolePermissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePermissionPayload<ExtArgs>, T, "findMany"> | Null>
+    rolePermission<T extends Permission$rolePermissionArgs<ExtArgs> = {}>(args?: Subset<T, Permission$rolePermissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RolePermissionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10993,9 +10985,9 @@ export namespace Prisma {
   }
 
   /**
-   * Permission.RolePermission
+   * Permission.rolePermission
    */
-  export type Permission$RolePermissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Permission$rolePermissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the RolePermission
      */
@@ -11201,7 +11193,7 @@ export namespace Prisma {
   export type ModuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    Permission?: boolean | Module$PermissionArgs<ExtArgs>
+    permission?: boolean | Module$permissionArgs<ExtArgs>
     _count?: boolean | ModuleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["module"]>
 
@@ -11212,14 +11204,14 @@ export namespace Prisma {
   }
 
   export type ModuleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Permission?: boolean | Module$PermissionArgs<ExtArgs>
+    permission?: boolean | Module$permissionArgs<ExtArgs>
     _count?: boolean | ModuleCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ModulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Module"
     objects: {
-      Permission: Prisma.$PermissionPayload<ExtArgs>[]
+      permission: Prisma.$PermissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11564,7 +11556,7 @@ export namespace Prisma {
    */
   export interface Prisma__ModuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Permission<T extends Module$PermissionArgs<ExtArgs> = {}>(args?: Subset<T, Module$PermissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PermissionPayload<ExtArgs>, T, "findMany"> | Null>
+    permission<T extends Module$permissionArgs<ExtArgs> = {}>(args?: Subset<T, Module$permissionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PermissionPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11895,9 +11887,9 @@ export namespace Prisma {
   }
 
   /**
-   * Module.Permission
+   * Module.permission
    */
-  export type Module$PermissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Module$permissionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Permission
      */
@@ -12111,7 +12103,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    Customer?: boolean | Activity$CustomerArgs<ExtArgs>
+    customer?: boolean | Activity$customerArgs<ExtArgs>
     _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
@@ -12123,14 +12115,14 @@ export namespace Prisma {
   }
 
   export type ActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Customer?: boolean | Activity$CustomerArgs<ExtArgs>
+    customer?: boolean | Activity$customerArgs<ExtArgs>
     _count?: boolean | ActivityCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Activity"
     objects: {
-      Customer: Prisma.$CustomerPayload<ExtArgs>[]
+      customer: Prisma.$CustomerPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -12476,7 +12468,7 @@ export namespace Prisma {
    */
   export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Customer<T extends Activity$CustomerArgs<ExtArgs> = {}>(args?: Subset<T, Activity$CustomerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany"> | Null>
+    customer<T extends Activity$customerArgs<ExtArgs> = {}>(args?: Subset<T, Activity$customerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12808,9 +12800,9 @@ export namespace Prisma {
   }
 
   /**
-   * Activity.Customer
+   * Activity.customer
    */
-  export type Activity$CustomerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Activity$customerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Customer
      */
@@ -13032,7 +13024,7 @@ export namespace Prisma {
     name?: boolean
     comment?: boolean
     isActive?: boolean
-    VisaRequest?: boolean | VisaType$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | VisaType$visaRequestArgs<ExtArgs>
     _count?: boolean | VisaTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["visaType"]>
 
@@ -13045,14 +13037,14 @@ export namespace Prisma {
   }
 
   export type VisaTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    VisaRequest?: boolean | VisaType$VisaRequestArgs<ExtArgs>
+    visaRequest?: boolean | VisaType$visaRequestArgs<ExtArgs>
     _count?: boolean | VisaTypeCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $VisaTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "VisaType"
     objects: {
-      VisaRequest: Prisma.$VisaRequestPayload<ExtArgs>[]
+      visaRequest: Prisma.$VisaRequestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -13399,7 +13391,7 @@ export namespace Prisma {
    */
   export interface Prisma__VisaTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    VisaRequest<T extends VisaType$VisaRequestArgs<ExtArgs> = {}>(args?: Subset<T, VisaType$VisaRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findMany"> | Null>
+    visaRequest<T extends VisaType$visaRequestArgs<ExtArgs> = {}>(args?: Subset<T, VisaType$visaRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VisaRequestPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13732,9 +13724,9 @@ export namespace Prisma {
   }
 
   /**
-   * VisaType.VisaRequest
+   * VisaType.visaRequest
    */
-  export type VisaType$VisaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type VisaType$visaRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the VisaRequest
      */
@@ -15885,7 +15877,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     isActive?: boolean
-    Location?: boolean | LocationType$LocationArgs<ExtArgs>
+    location?: boolean | LocationType$locationArgs<ExtArgs>
     _count?: boolean | LocationTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["locationType"]>
 
@@ -15897,14 +15889,14 @@ export namespace Prisma {
   }
 
   export type LocationTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Location?: boolean | LocationType$LocationArgs<ExtArgs>
+    location?: boolean | LocationType$locationArgs<ExtArgs>
     _count?: boolean | LocationTypeCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $LocationTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LocationType"
     objects: {
-      Location: Prisma.$LocationPayload<ExtArgs>[]
+      location: Prisma.$LocationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -16250,7 +16242,7 @@ export namespace Prisma {
    */
   export interface Prisma__LocationTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Location<T extends LocationType$LocationArgs<ExtArgs> = {}>(args?: Subset<T, LocationType$LocationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany"> | Null>
+    location<T extends LocationType$locationArgs<ExtArgs> = {}>(args?: Subset<T, LocationType$locationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16582,9 +16574,9 @@ export namespace Prisma {
   }
 
   /**
-   * LocationType.Location
+   * LocationType.location
    */
-  export type LocationType$LocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocationType$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Location
      */
@@ -16644,7 +16636,8 @@ export namespace Prisma {
   export const IconScalarFieldEnum: {
     id: 'id',
     path: 'path',
-    code: 'code'
+    code: 'code',
+    comment: 'comment'
   };
 
   export type IconScalarFieldEnum = (typeof IconScalarFieldEnum)[keyof typeof IconScalarFieldEnum]
@@ -16702,8 +16695,7 @@ export namespace Prisma {
     displayname: 'displayname',
     phone: 'phone',
     email: 'email',
-    companyId: 'companyId',
-    gymId: 'gymId',
+    address: 'address',
     loginId: 'loginId'
   };
 
@@ -16828,7 +16820,8 @@ export namespace Prisma {
 
   export const IconOrderByRelevanceFieldEnum: {
     path: 'path',
-    code: 'code'
+    code: 'code',
+    comment: 'comment'
   };
 
   export type IconOrderByRelevanceFieldEnum = (typeof IconOrderByRelevanceFieldEnum)[keyof typeof IconOrderByRelevanceFieldEnum]
@@ -16869,7 +16862,8 @@ export namespace Prisma {
   export const UserOrderByRelevanceFieldEnum: {
     displayname: 'displayname',
     phone: 'phone',
-    email: 'email'
+    email: 'email',
+    address: 'address'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -17002,7 +16996,7 @@ export namespace Prisma {
     roleId?: IntNullableFilter<"Login"> | number | null
     user?: UserListRelationFilter
     Customer?: CustomerListRelationFilter
-    Role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
   }
 
   export type LoginOrderByWithRelationInput = {
@@ -17013,7 +17007,7 @@ export namespace Prisma {
     roleId?: SortOrderInput | SortOrder
     user?: UserOrderByRelationAggregateInput
     Customer?: CustomerOrderByRelationAggregateInput
-    Role?: RoleOrderByWithRelationInput
+    role?: RoleOrderByWithRelationInput
     _relevance?: LoginOrderByRelevanceInput
   }
 
@@ -17029,7 +17023,7 @@ export namespace Prisma {
     roleId?: IntNullableFilter<"Login"> | number | null
     user?: UserListRelationFilter
     Customer?: CustomerListRelationFilter
-    Role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
   }, "id" | "type_username">
 
   export type LoginOrderByWithAggregationInput = {
@@ -17063,12 +17057,14 @@ export namespace Prisma {
     id?: IntFilter<"Icon"> | number
     path?: StringFilter<"Icon"> | string
     code?: StringFilter<"Icon"> | string
+    comment?: StringFilter<"Icon"> | string
   }
 
   export type IconOrderByWithRelationInput = {
     id?: SortOrder
     path?: SortOrder
     code?: SortOrder
+    comment?: SortOrder
     _relevance?: IconOrderByRelevanceInput
   }
 
@@ -17079,12 +17075,14 @@ export namespace Prisma {
     NOT?: IconWhereInput | IconWhereInput[]
     path?: StringFilter<"Icon"> | string
     code?: StringFilter<"Icon"> | string
+    comment?: StringFilter<"Icon"> | string
   }, "id">
 
   export type IconOrderByWithAggregationInput = {
     id?: SortOrder
     path?: SortOrder
     code?: SortOrder
+    comment?: SortOrder
     _count?: IconCountOrderByAggregateInput
     _avg?: IconAvgOrderByAggregateInput
     _max?: IconMaxOrderByAggregateInput
@@ -17099,6 +17097,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Icon"> | number
     path?: StringWithAggregatesFilter<"Icon"> | string
     code?: StringWithAggregatesFilter<"Icon"> | string
+    comment?: StringWithAggregatesFilter<"Icon"> | string
   }
 
   export type CustomerWhereInput = {
@@ -17224,7 +17223,7 @@ export namespace Prisma {
     phone?: StringFilter<"contactInfo"> | string
     customerId?: IntNullableFilter<"contactInfo"> | number | null
     visaRequestId?: IntNullableFilter<"contactInfo"> | number | null
-    VisaRequest?: XOR<VisaRequestNullableScalarRelationFilter, VisaRequestWhereInput> | null
+    visaRequest?: XOR<VisaRequestNullableScalarRelationFilter, VisaRequestWhereInput> | null
   }
 
   export type contactInfoOrderByWithRelationInput = {
@@ -17233,7 +17232,7 @@ export namespace Prisma {
     phone?: SortOrder
     customerId?: SortOrderInput | SortOrder
     visaRequestId?: SortOrderInput | SortOrder
-    VisaRequest?: VisaRequestOrderByWithRelationInput
+    visaRequest?: VisaRequestOrderByWithRelationInput
     _relevance?: contactInfoOrderByRelevanceInput
   }
 
@@ -17246,7 +17245,7 @@ export namespace Prisma {
     phone?: StringFilter<"contactInfo"> | string
     customerId?: IntNullableFilter<"contactInfo"> | number | null
     visaRequestId?: IntNullableFilter<"contactInfo"> | number | null
-    VisaRequest?: XOR<VisaRequestNullableScalarRelationFilter, VisaRequestWhereInput> | null
+    visaRequest?: XOR<VisaRequestNullableScalarRelationFilter, VisaRequestWhereInput> | null
   }, "id">
 
   export type contactInfoOrderByWithAggregationInput = {
@@ -17288,7 +17287,7 @@ export namespace Prisma {
     locationId?: IntNullableFilter<"RoadTripInfo"> | number | null
     arrivalBy?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     departureBy?: XOR<LocationScalarRelationFilter, LocationWhereInput>
-    VisaRequest?: VisaRequestListRelationFilter
+    visaRequest?: VisaRequestListRelationFilter
   }
 
   export type RoadTripInfoOrderByWithRelationInput = {
@@ -17303,7 +17302,7 @@ export namespace Prisma {
     locationId?: SortOrderInput | SortOrder
     arrivalBy?: LocationOrderByWithRelationInput
     departureBy?: LocationOrderByWithRelationInput
-    VisaRequest?: VisaRequestOrderByRelationAggregateInput
+    visaRequest?: VisaRequestOrderByRelationAggregateInput
     _relevance?: RoadTripInfoOrderByRelevanceInput
   }
 
@@ -17322,7 +17321,7 @@ export namespace Prisma {
     locationId?: IntNullableFilter<"RoadTripInfo"> | number | null
     arrivalBy?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     departureBy?: XOR<LocationScalarRelationFilter, LocationWhereInput>
-    VisaRequest?: VisaRequestListRelationFilter
+    visaRequest?: VisaRequestListRelationFilter
   }, "id">
 
   export type RoadTripInfoOrderByWithAggregationInput = {
@@ -17365,8 +17364,7 @@ export namespace Prisma {
     displayname?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    companyId?: IntNullableFilter<"User"> | number | null
-    gymId?: IntNullableFilter<"User"> | number | null
+    address?: StringNullableFilter<"User"> | string | null
     loginId?: IntNullableFilter<"User"> | number | null
     login?: XOR<LoginNullableScalarRelationFilter, LoginWhereInput> | null
   }
@@ -17376,8 +17374,7 @@ export namespace Prisma {
     displayname?: SortOrder
     phone?: SortOrder
     email?: SortOrder
-    companyId?: SortOrderInput | SortOrder
-    gymId?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     loginId?: SortOrderInput | SortOrder
     login?: LoginOrderByWithRelationInput
     _relevance?: UserOrderByRelevanceInput
@@ -17391,8 +17388,7 @@ export namespace Prisma {
     displayname?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    companyId?: IntNullableFilter<"User"> | number | null
-    gymId?: IntNullableFilter<"User"> | number | null
+    address?: StringNullableFilter<"User"> | string | null
     loginId?: IntNullableFilter<"User"> | number | null
     login?: XOR<LoginNullableScalarRelationFilter, LoginWhereInput> | null
   }, "id">
@@ -17402,8 +17398,7 @@ export namespace Prisma {
     displayname?: SortOrder
     phone?: SortOrder
     email?: SortOrder
-    companyId?: SortOrderInput | SortOrder
-    gymId?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     loginId?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -17420,8 +17415,7 @@ export namespace Prisma {
     displayname?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    companyId?: IntNullableWithAggregatesFilter<"User"> | number | null
-    gymId?: IntNullableWithAggregatesFilter<"User"> | number | null
+    address?: StringNullableWithAggregatesFilter<"User"> | string | null
     loginId?: IntNullableWithAggregatesFilter<"User"> | number | null
   }
 
@@ -17436,8 +17430,8 @@ export namespace Prisma {
     comment?: StringNullableFilter<"Role"> | string | null
     byId?: IntNullableFilter<"Role"> | number | null
     isActive?: BoolFilter<"Role"> | boolean
-    RolePermission?: RolePermissionListRelationFilter
-    Login?: LoginListRelationFilter
+    rolePermission?: RolePermissionListRelationFilter
+    login?: LoginListRelationFilter
   }
 
   export type RoleOrderByWithRelationInput = {
@@ -17448,8 +17442,8 @@ export namespace Prisma {
     comment?: SortOrderInput | SortOrder
     byId?: SortOrderInput | SortOrder
     isActive?: SortOrder
-    RolePermission?: RolePermissionOrderByRelationAggregateInput
-    Login?: LoginOrderByRelationAggregateInput
+    rolePermission?: RolePermissionOrderByRelationAggregateInput
+    login?: LoginOrderByRelationAggregateInput
     _relevance?: RoleOrderByRelevanceInput
   }
 
@@ -17464,8 +17458,8 @@ export namespace Prisma {
     comment?: StringNullableFilter<"Role"> | string | null
     byId?: IntNullableFilter<"Role"> | number | null
     isActive?: BoolFilter<"Role"> | boolean
-    RolePermission?: RolePermissionListRelationFilter
-    Login?: LoginListRelationFilter
+    rolePermission?: RolePermissionListRelationFilter
+    login?: LoginListRelationFilter
   }, "id" | "name">
 
   export type RoleOrderByWithAggregationInput = {
@@ -17553,7 +17547,7 @@ export namespace Prisma {
     action?: EnumPermissionActionEnumFilter<"Permission"> | $Enums.PermissionActionEnum
     byId?: IntNullableFilter<"Permission"> | number | null
     module?: XOR<ModuleScalarRelationFilter, ModuleWhereInput>
-    RolePermission?: RolePermissionListRelationFilter
+    rolePermission?: RolePermissionListRelationFilter
   }
 
   export type PermissionOrderByWithRelationInput = {
@@ -17564,7 +17558,7 @@ export namespace Prisma {
     action?: SortOrder
     byId?: SortOrderInput | SortOrder
     module?: ModuleOrderByWithRelationInput
-    RolePermission?: RolePermissionOrderByRelationAggregateInput
+    rolePermission?: RolePermissionOrderByRelationAggregateInput
     _relevance?: PermissionOrderByRelevanceInput
   }
 
@@ -17579,7 +17573,7 @@ export namespace Prisma {
     action?: EnumPermissionActionEnumFilter<"Permission"> | $Enums.PermissionActionEnum
     byId?: IntNullableFilter<"Permission"> | number | null
     module?: XOR<ModuleScalarRelationFilter, ModuleWhereInput>
-    RolePermission?: RolePermissionListRelationFilter
+    rolePermission?: RolePermissionListRelationFilter
   }, "id" | "code">
 
   export type PermissionOrderByWithAggregationInput = {
@@ -17614,13 +17608,13 @@ export namespace Prisma {
     NOT?: ModuleWhereInput | ModuleWhereInput[]
     id?: IntFilter<"Module"> | number
     name?: StringFilter<"Module"> | string
-    Permission?: PermissionListRelationFilter
+    permission?: PermissionListRelationFilter
   }
 
   export type ModuleOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    Permission?: PermissionOrderByRelationAggregateInput
+    permission?: PermissionOrderByRelationAggregateInput
     _relevance?: ModuleOrderByRelevanceInput
   }
 
@@ -17630,7 +17624,7 @@ export namespace Prisma {
     AND?: ModuleWhereInput | ModuleWhereInput[]
     OR?: ModuleWhereInput[]
     NOT?: ModuleWhereInput | ModuleWhereInput[]
-    Permission?: PermissionListRelationFilter
+    permission?: PermissionListRelationFilter
   }, "id" | "name">
 
   export type ModuleOrderByWithAggregationInput = {
@@ -17658,14 +17652,14 @@ export namespace Prisma {
     id?: IntFilter<"Activity"> | number
     name?: StringFilter<"Activity"> | string
     isActive?: BoolFilter<"Activity"> | boolean
-    Customer?: CustomerListRelationFilter
+    customer?: CustomerListRelationFilter
   }
 
   export type ActivityOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    Customer?: CustomerOrderByRelationAggregateInput
+    customer?: CustomerOrderByRelationAggregateInput
     _relevance?: ActivityOrderByRelevanceInput
   }
 
@@ -17676,7 +17670,7 @@ export namespace Prisma {
     OR?: ActivityWhereInput[]
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     isActive?: BoolFilter<"Activity"> | boolean
-    Customer?: CustomerListRelationFilter
+    customer?: CustomerListRelationFilter
   }, "id" | "name">
 
   export type ActivityOrderByWithAggregationInput = {
@@ -17707,7 +17701,7 @@ export namespace Prisma {
     name?: StringFilter<"VisaType"> | string
     comment?: StringFilter<"VisaType"> | string
     isActive?: BoolFilter<"VisaType"> | boolean
-    VisaRequest?: VisaRequestListRelationFilter
+    visaRequest?: VisaRequestListRelationFilter
   }
 
   export type VisaTypeOrderByWithRelationInput = {
@@ -17715,7 +17709,7 @@ export namespace Prisma {
     name?: SortOrder
     comment?: SortOrder
     isActive?: SortOrder
-    VisaRequest?: VisaRequestOrderByRelationAggregateInput
+    visaRequest?: VisaRequestOrderByRelationAggregateInput
     _relevance?: VisaTypeOrderByRelevanceInput
   }
 
@@ -17727,7 +17721,7 @@ export namespace Prisma {
     NOT?: VisaTypeWhereInput | VisaTypeWhereInput[]
     comment?: StringFilter<"VisaType"> | string
     isActive?: BoolFilter<"VisaType"> | boolean
-    VisaRequest?: VisaRequestListRelationFilter
+    visaRequest?: VisaRequestListRelationFilter
   }, "id" | "name">
 
   export type VisaTypeOrderByWithAggregationInput = {
@@ -17895,14 +17889,14 @@ export namespace Prisma {
     id?: IntFilter<"LocationType"> | number
     name?: StringFilter<"LocationType"> | string
     isActive?: BoolFilter<"LocationType"> | boolean
-    Location?: LocationListRelationFilter
+    location?: LocationListRelationFilter
   }
 
   export type LocationTypeOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     isActive?: SortOrder
-    Location?: LocationOrderByRelationAggregateInput
+    location?: LocationOrderByRelationAggregateInput
     _relevance?: LocationTypeOrderByRelevanceInput
   }
 
@@ -17913,7 +17907,7 @@ export namespace Prisma {
     OR?: LocationTypeWhereInput[]
     NOT?: LocationTypeWhereInput | LocationTypeWhereInput[]
     isActive?: BoolFilter<"LocationType"> | boolean
-    Location?: LocationListRelationFilter
+    location?: LocationListRelationFilter
   }, "id" | "name">
 
   export type LocationTypeOrderByWithAggregationInput = {
@@ -17942,7 +17936,7 @@ export namespace Prisma {
     password: string
     user?: UserCreateNestedManyWithoutLoginInput
     Customer?: CustomerCreateNestedManyWithoutLoginInput
-    Role?: RoleCreateNestedOneWithoutLoginInput
+    role?: RoleCreateNestedOneWithoutLoginInput
   }
 
   export type LoginUncheckedCreateInput = {
@@ -17961,7 +17955,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateManyWithoutLoginNestedInput
     Customer?: CustomerUpdateManyWithoutLoginNestedInput
-    Role?: RoleUpdateOneWithoutLoginNestedInput
+    role?: RoleUpdateOneWithoutLoginNestedInput
   }
 
   export type LoginUncheckedUpdateInput = {
@@ -17999,40 +17993,47 @@ export namespace Prisma {
   export type IconCreateInput = {
     path: string
     code: string
+    comment: string
   }
 
   export type IconUncheckedCreateInput = {
     id?: number
     path: string
     code: string
+    comment: string
   }
 
   export type IconUpdateInput = {
     path?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
   }
 
   export type IconUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     path?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
   }
 
   export type IconCreateManyInput = {
     id?: number
     path: string
     code: string
+    comment: string
   }
 
   export type IconUpdateManyMutationInput = {
     path?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
   }
 
   export type IconUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     path?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    comment?: StringFieldUpdateOperationsInput | string
   }
 
   export type CustomerCreateInput = {
@@ -18164,7 +18165,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     customerId?: number | null
-    VisaRequest?: VisaRequestCreateNestedOneWithoutContactsInput
+    visaRequest?: VisaRequestCreateNestedOneWithoutContactsInput
   }
 
   export type contactInfoUncheckedCreateInput = {
@@ -18179,7 +18180,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     customerId?: NullableIntFieldUpdateOperationsInput | number | null
-    VisaRequest?: VisaRequestUpdateOneWithoutContactsNestedInput
+    visaRequest?: VisaRequestUpdateOneWithoutContactsNestedInput
   }
 
   export type contactInfoUncheckedUpdateInput = {
@@ -18221,7 +18222,7 @@ export namespace Prisma {
     locationId?: number | null
     arrivalBy: LocationCreateNestedOneWithoutArrivalByInput
     departureBy: LocationCreateNestedOneWithoutDepartureByInput
-    VisaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoUncheckedCreateInput = {
@@ -18234,7 +18235,7 @@ export namespace Prisma {
     departureDate: Date | string
     departureToId: number
     locationId?: number | null
-    VisaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoUpdateInput = {
@@ -18246,7 +18247,7 @@ export namespace Prisma {
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
     arrivalBy?: LocationUpdateOneRequiredWithoutArrivalByNestedInput
     departureBy?: LocationUpdateOneRequiredWithoutDepartureByNestedInput
-    VisaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoUncheckedUpdateInput = {
@@ -18259,7 +18260,7 @@ export namespace Prisma {
     departureDate?: DateTimeFieldUpdateOperationsInput | Date | string
     departureToId?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    VisaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoCreateManyInput = {
@@ -18299,8 +18300,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
     login?: LoginCreateNestedOneWithoutUserInput
   }
 
@@ -18309,8 +18309,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
     loginId?: number | null
   }
 
@@ -18318,8 +18317,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     login?: LoginUpdateOneWithoutUserNestedInput
   }
 
@@ -18328,8 +18326,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     loginId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -18338,8 +18335,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
     loginId?: number | null
   }
 
@@ -18347,8 +18343,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -18356,8 +18351,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     loginId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -18368,8 +18362,8 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    RolePermission?: RolePermissionCreateNestedManyWithoutRoleInput
-    Login?: LoginCreateNestedManyWithoutRoleInput
+    rolePermission?: RolePermissionCreateNestedManyWithoutRoleInput
+    login?: LoginCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateInput = {
@@ -18380,8 +18374,8 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    RolePermission?: RolePermissionUncheckedCreateNestedManyWithoutRoleInput
-    Login?: LoginUncheckedCreateNestedManyWithoutRoleInput
+    rolePermission?: RolePermissionUncheckedCreateNestedManyWithoutRoleInput
+    login?: LoginUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUpdateInput = {
@@ -18391,8 +18385,8 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    RolePermission?: RolePermissionUpdateManyWithoutRoleNestedInput
-    Login?: LoginUpdateManyWithoutRoleNestedInput
+    rolePermission?: RolePermissionUpdateManyWithoutRoleNestedInput
+    login?: LoginUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateInput = {
@@ -18403,8 +18397,8 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    RolePermission?: RolePermissionUncheckedUpdateManyWithoutRoleNestedInput
-    Login?: LoginUncheckedUpdateManyWithoutRoleNestedInput
+    rolePermission?: RolePermissionUncheckedUpdateManyWithoutRoleNestedInput
+    login?: LoginUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleCreateManyInput = {
@@ -18476,7 +18470,7 @@ export namespace Prisma {
     action: $Enums.PermissionActionEnum
     byId?: number | null
     module: ModuleCreateNestedOneWithoutPermissionInput
-    RolePermission?: RolePermissionCreateNestedManyWithoutPermissionInput
+    rolePermission?: RolePermissionCreateNestedManyWithoutPermissionInput
   }
 
   export type PermissionUncheckedCreateInput = {
@@ -18486,7 +18480,7 @@ export namespace Prisma {
     moduleId: number
     action: $Enums.PermissionActionEnum
     byId?: number | null
-    RolePermission?: RolePermissionUncheckedCreateNestedManyWithoutPermissionInput
+    rolePermission?: RolePermissionUncheckedCreateNestedManyWithoutPermissionInput
   }
 
   export type PermissionUpdateInput = {
@@ -18495,7 +18489,7 @@ export namespace Prisma {
     action?: EnumPermissionActionEnumFieldUpdateOperationsInput | $Enums.PermissionActionEnum
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     module?: ModuleUpdateOneRequiredWithoutPermissionNestedInput
-    RolePermission?: RolePermissionUpdateManyWithoutPermissionNestedInput
+    rolePermission?: RolePermissionUpdateManyWithoutPermissionNestedInput
   }
 
   export type PermissionUncheckedUpdateInput = {
@@ -18505,7 +18499,7 @@ export namespace Prisma {
     moduleId?: IntFieldUpdateOperationsInput | number
     action?: EnumPermissionActionEnumFieldUpdateOperationsInput | $Enums.PermissionActionEnum
     byId?: NullableIntFieldUpdateOperationsInput | number | null
-    RolePermission?: RolePermissionUncheckedUpdateManyWithoutPermissionNestedInput
+    rolePermission?: RolePermissionUncheckedUpdateManyWithoutPermissionNestedInput
   }
 
   export type PermissionCreateManyInput = {
@@ -18535,24 +18529,24 @@ export namespace Prisma {
 
   export type ModuleCreateInput = {
     name: string
-    Permission?: PermissionCreateNestedManyWithoutModuleInput
+    permission?: PermissionCreateNestedManyWithoutModuleInput
   }
 
   export type ModuleUncheckedCreateInput = {
     id?: number
     name: string
-    Permission?: PermissionUncheckedCreateNestedManyWithoutModuleInput
+    permission?: PermissionUncheckedCreateNestedManyWithoutModuleInput
   }
 
   export type ModuleUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    Permission?: PermissionUpdateManyWithoutModuleNestedInput
+    permission?: PermissionUpdateManyWithoutModuleNestedInput
   }
 
   export type ModuleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    Permission?: PermissionUncheckedUpdateManyWithoutModuleNestedInput
+    permission?: PermissionUncheckedUpdateManyWithoutModuleNestedInput
   }
 
   export type ModuleCreateManyInput = {
@@ -18572,27 +18566,27 @@ export namespace Prisma {
   export type ActivityCreateInput = {
     name: string
     isActive?: boolean
-    Customer?: CustomerCreateNestedManyWithoutActivityInput
+    customer?: CustomerCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUncheckedCreateInput = {
     id?: number
     name: string
     isActive?: boolean
-    Customer?: CustomerUncheckedCreateNestedManyWithoutActivityInput
+    customer?: CustomerUncheckedCreateNestedManyWithoutActivityInput
   }
 
   export type ActivityUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Customer?: CustomerUpdateManyWithoutActivityNestedInput
+    customer?: CustomerUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Customer?: CustomerUncheckedUpdateManyWithoutActivityNestedInput
+    customer?: CustomerUncheckedUpdateManyWithoutActivityNestedInput
   }
 
   export type ActivityCreateManyInput = {
@@ -18616,7 +18610,7 @@ export namespace Prisma {
     name: string
     comment: string
     isActive?: boolean
-    VisaRequest?: VisaRequestCreateNestedManyWithoutVisaTypeInput
+    visaRequest?: VisaRequestCreateNestedManyWithoutVisaTypeInput
   }
 
   export type VisaTypeUncheckedCreateInput = {
@@ -18624,14 +18618,14 @@ export namespace Prisma {
     name: string
     comment: string
     isActive?: boolean
-    VisaRequest?: VisaRequestUncheckedCreateNestedManyWithoutVisaTypeInput
+    visaRequest?: VisaRequestUncheckedCreateNestedManyWithoutVisaTypeInput
   }
 
   export type VisaTypeUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    VisaRequest?: VisaRequestUpdateManyWithoutVisaTypeNestedInput
+    visaRequest?: VisaRequestUpdateManyWithoutVisaTypeNestedInput
   }
 
   export type VisaTypeUncheckedUpdateInput = {
@@ -18639,7 +18633,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    VisaRequest?: VisaRequestUncheckedUpdateManyWithoutVisaTypeNestedInput
+    visaRequest?: VisaRequestUncheckedUpdateManyWithoutVisaTypeNestedInput
   }
 
   export type VisaTypeCreateManyInput = {
@@ -18786,27 +18780,27 @@ export namespace Prisma {
   export type LocationTypeCreateInput = {
     name: string
     isActive?: boolean
-    Location?: LocationCreateNestedManyWithoutLocationTypeInput
+    location?: LocationCreateNestedManyWithoutLocationTypeInput
   }
 
   export type LocationTypeUncheckedCreateInput = {
     id?: number
     name: string
     isActive?: boolean
-    Location?: LocationUncheckedCreateNestedManyWithoutLocationTypeInput
+    location?: LocationUncheckedCreateNestedManyWithoutLocationTypeInput
   }
 
   export type LocationTypeUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Location?: LocationUpdateManyWithoutLocationTypeNestedInput
+    location?: LocationUpdateManyWithoutLocationTypeNestedInput
   }
 
   export type LocationTypeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Location?: LocationUncheckedUpdateManyWithoutLocationTypeNestedInput
+    location?: LocationUncheckedUpdateManyWithoutLocationTypeNestedInput
   }
 
   export type LocationTypeCreateManyInput = {
@@ -19015,6 +19009,7 @@ export namespace Prisma {
     id?: SortOrder
     path?: SortOrder
     code?: SortOrder
+    comment?: SortOrder
   }
 
   export type IconAvgOrderByAggregateInput = {
@@ -19025,12 +19020,14 @@ export namespace Prisma {
     id?: SortOrder
     path?: SortOrder
     code?: SortOrder
+    comment?: SortOrder
   }
 
   export type IconMinOrderByAggregateInput = {
     id?: SortOrder
     path?: SortOrder
     code?: SortOrder
+    comment?: SortOrder
   }
 
   export type IconSumOrderByAggregateInput = {
@@ -19262,6 +19259,21 @@ export namespace Prisma {
     locationId?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type LoginNullableScalarRelationFilter = {
     is?: LoginWhereInput | null
     isNot?: LoginWhereInput | null
@@ -19278,15 +19290,12 @@ export namespace Prisma {
     displayname?: SortOrder
     phone?: SortOrder
     email?: SortOrder
-    companyId?: SortOrder
-    gymId?: SortOrder
+    address?: SortOrder
     loginId?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
-    companyId?: SortOrder
-    gymId?: SortOrder
     loginId?: SortOrder
   }
 
@@ -19295,8 +19304,7 @@ export namespace Prisma {
     displayname?: SortOrder
     phone?: SortOrder
     email?: SortOrder
-    companyId?: SortOrder
-    gymId?: SortOrder
+    address?: SortOrder
     loginId?: SortOrder
   }
 
@@ -19305,30 +19313,16 @@ export namespace Prisma {
     displayname?: SortOrder
     phone?: SortOrder
     email?: SortOrder
-    companyId?: SortOrder
-    gymId?: SortOrder
+    address?: SortOrder
     loginId?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
-    companyId?: SortOrder
-    gymId?: SortOrder
     loginId?: SortOrder
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
     notIn?: string[] | null
@@ -19340,7 +19334,21 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -19426,24 +19434,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -20126,6 +20116,10 @@ export namespace Prisma {
     connect?: LoginWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type LoginUpdateOneWithoutUserNestedInput = {
     create?: XOR<LoginCreateWithoutUserInput, LoginUncheckedCreateWithoutUserInput>
     connectOrCreate?: LoginCreateOrConnectWithoutUserInput
@@ -20166,10 +20160,6 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -20821,17 +20811,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -20845,6 +20824,35 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -20864,24 +20872,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -20913,8 +20903,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
   }
 
   export type UserUncheckedCreateWithoutLoginInput = {
@@ -20922,8 +20911,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
   }
 
   export type UserCreateOrConnectWithoutLoginInput = {
@@ -20988,7 +20976,7 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    RolePermission?: RolePermissionCreateNestedManyWithoutRoleInput
+    rolePermission?: RolePermissionCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateWithoutLoginInput = {
@@ -20999,7 +20987,7 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    RolePermission?: RolePermissionUncheckedCreateNestedManyWithoutRoleInput
+    rolePermission?: RolePermissionUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleCreateOrConnectWithoutLoginInput = {
@@ -21031,8 +21019,7 @@ export namespace Prisma {
     displayname?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    companyId?: IntNullableFilter<"User"> | number | null
-    gymId?: IntNullableFilter<"User"> | number | null
+    address?: StringNullableFilter<"User"> | string | null
     loginId?: IntNullableFilter<"User"> | number | null
   }
 
@@ -21091,7 +21078,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    RolePermission?: RolePermissionUpdateManyWithoutRoleNestedInput
+    rolePermission?: RolePermissionUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutLoginInput = {
@@ -21102,7 +21089,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    RolePermission?: RolePermissionUncheckedUpdateManyWithoutRoleNestedInput
+    rolePermission?: RolePermissionUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type LoginCreateWithoutCustomerInput = {
@@ -21110,7 +21097,7 @@ export namespace Prisma {
     username: string
     password: string
     user?: UserCreateNestedManyWithoutLoginInput
-    Role?: RoleCreateNestedOneWithoutLoginInput
+    role?: RoleCreateNestedOneWithoutLoginInput
   }
 
   export type LoginUncheckedCreateWithoutCustomerInput = {
@@ -21188,7 +21175,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateManyWithoutLoginNestedInput
-    Role?: RoleUpdateOneWithoutLoginNestedInput
+    role?: RoleUpdateOneWithoutLoginNestedInput
   }
 
   export type LoginUncheckedUpdateWithoutCustomerInput = {
@@ -21447,7 +21434,7 @@ export namespace Prisma {
     username: string
     password: string
     Customer?: CustomerCreateNestedManyWithoutLoginInput
-    Role?: RoleCreateNestedOneWithoutLoginInput
+    role?: RoleCreateNestedOneWithoutLoginInput
   }
 
   export type LoginUncheckedCreateWithoutUserInput = {
@@ -21480,7 +21467,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     Customer?: CustomerUpdateManyWithoutLoginNestedInput
-    Role?: RoleUpdateOneWithoutLoginNestedInput
+    role?: RoleUpdateOneWithoutLoginNestedInput
   }
 
   export type LoginUncheckedUpdateWithoutUserInput = {
@@ -21595,7 +21582,7 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    Login?: LoginCreateNestedManyWithoutRoleInput
+    login?: LoginCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateWithoutRolePermissionInput = {
@@ -21606,7 +21593,7 @@ export namespace Prisma {
     comment?: string | null
     byId?: number | null
     isActive?: boolean
-    Login?: LoginUncheckedCreateNestedManyWithoutRoleInput
+    login?: LoginUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleCreateOrConnectWithoutRolePermissionInput = {
@@ -21654,7 +21641,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Login?: LoginUpdateManyWithoutRoleNestedInput
+    login?: LoginUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateWithoutRolePermissionInput = {
@@ -21665,7 +21652,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     byId?: NullableIntFieldUpdateOperationsInput | number | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    Login?: LoginUncheckedUpdateManyWithoutRoleNestedInput
+    login?: LoginUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type PermissionUpsertWithoutRolePermissionInput = {
@@ -21769,7 +21756,7 @@ export namespace Prisma {
     comment?: string | null
     action: $Enums.PermissionActionEnum
     byId?: number | null
-    RolePermission?: RolePermissionCreateNestedManyWithoutPermissionInput
+    rolePermission?: RolePermissionCreateNestedManyWithoutPermissionInput
   }
 
   export type PermissionUncheckedCreateWithoutModuleInput = {
@@ -21778,7 +21765,7 @@ export namespace Prisma {
     comment?: string | null
     action: $Enums.PermissionActionEnum
     byId?: number | null
-    RolePermission?: RolePermissionUncheckedCreateNestedManyWithoutPermissionInput
+    rolePermission?: RolePermissionUncheckedCreateNestedManyWithoutPermissionInput
   }
 
   export type PermissionCreateOrConnectWithoutModuleInput = {
@@ -22189,7 +22176,7 @@ export namespace Prisma {
     departureDate: Date | string
     locationId?: number | null
     arrivalBy: LocationCreateNestedOneWithoutArrivalByInput
-    VisaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoUncheckedCreateWithoutDepartureByInput = {
@@ -22201,7 +22188,7 @@ export namespace Prisma {
     departureTo: string
     departureDate: Date | string
     locationId?: number | null
-    VisaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoCreateOrConnectWithoutDepartureByInput = {
@@ -22222,7 +22209,7 @@ export namespace Prisma {
     departureDate: Date | string
     locationId?: number | null
     departureBy: LocationCreateNestedOneWithoutDepartureByInput
-    VisaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoUncheckedCreateWithoutArrivalByInput = {
@@ -22234,7 +22221,7 @@ export namespace Prisma {
     departureDate: Date | string
     departureToId: number
     locationId?: number | null
-    VisaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
+    visaRequest?: VisaRequestUncheckedCreateNestedManyWithoutRoadTripInput
   }
 
   export type RoadTripInfoCreateOrConnectWithoutArrivalByInput = {
@@ -22372,8 +22359,7 @@ export namespace Prisma {
     displayname: string
     phone: string
     email: string
-    companyId?: number | null
-    gymId?: number | null
+    address?: string | null
   }
 
   export type CustomerCreateManyLoginInput = {
@@ -22397,8 +22383,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateWithoutLoginInput = {
@@ -22406,8 +22391,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyWithoutLoginInput = {
@@ -22415,8 +22399,7 @@ export namespace Prisma {
     displayname?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    companyId?: NullableIntFieldUpdateOperationsInput | number | null
-    gymId?: NullableIntFieldUpdateOperationsInput | number | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CustomerUpdateWithoutLoginInput = {
@@ -22621,7 +22604,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumPermissionActionEnumFieldUpdateOperationsInput | $Enums.PermissionActionEnum
     byId?: NullableIntFieldUpdateOperationsInput | number | null
-    RolePermission?: RolePermissionUpdateManyWithoutPermissionNestedInput
+    rolePermission?: RolePermissionUpdateManyWithoutPermissionNestedInput
   }
 
   export type PermissionUncheckedUpdateWithoutModuleInput = {
@@ -22630,7 +22613,7 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     action?: EnumPermissionActionEnumFieldUpdateOperationsInput | $Enums.PermissionActionEnum
     byId?: NullableIntFieldUpdateOperationsInput | number | null
-    RolePermission?: RolePermissionUncheckedUpdateManyWithoutPermissionNestedInput
+    rolePermission?: RolePermissionUncheckedUpdateManyWithoutPermissionNestedInput
   }
 
   export type PermissionUncheckedUpdateManyWithoutModuleInput = {
@@ -22804,7 +22787,7 @@ export namespace Prisma {
     departureDate?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
     arrivalBy?: LocationUpdateOneRequiredWithoutArrivalByNestedInput
-    VisaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoUncheckedUpdateWithoutDepartureByInput = {
@@ -22816,7 +22799,7 @@ export namespace Prisma {
     departureTo?: StringFieldUpdateOperationsInput | string
     departureDate?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    VisaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoUncheckedUpdateManyWithoutDepartureByInput = {
@@ -22838,7 +22821,7 @@ export namespace Prisma {
     departureDate?: DateTimeFieldUpdateOperationsInput | Date | string
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
     departureBy?: LocationUpdateOneRequiredWithoutDepartureByNestedInput
-    VisaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoUncheckedUpdateWithoutArrivalByInput = {
@@ -22850,7 +22833,7 @@ export namespace Prisma {
     departureDate?: DateTimeFieldUpdateOperationsInput | Date | string
     departureToId?: IntFieldUpdateOperationsInput | number
     locationId?: NullableIntFieldUpdateOperationsInput | number | null
-    VisaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
+    visaRequest?: VisaRequestUncheckedUpdateManyWithoutRoadTripNestedInput
   }
 
   export type RoadTripInfoUncheckedUpdateManyWithoutArrivalByInput = {

@@ -12,6 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoleService = void 0;
 const injectable_decorator_1 = require("@nestjs/common/decorators/core/injectable.decorator");
 const database_service_1 = require("../database/database.service");
+const base_response_1 = require("../../utils/base_response");
+const exclude_key_1 = require("../../utils/exclude_key");
+const ws_message_1 = require("../../exception/ws_message");
 let RoleService = class RoleService {
     constructor(db) {
         this.db = db;
@@ -34,8 +37,39 @@ let RoleService = class RoleService {
             console.log(error);
         });
     }
+    update({ body, id }) {
+        return this.db.role
+            .update({
+            data: { ...(0, exclude_key_1.excludeFields)(body, ['permissionIds']) },
+            where: { id: id },
+        })
+            .then(() => {
+            if (body.permissionIds && body.permissionIds.length > 0)
+                return this.db.rolePermission
+                    .deleteMany({ where: { roleId: id } })
+                    .then(() => {
+                    return this.db.rolePermission.createMany({
+                        data: body.permissionIds.map((e) => ({
+                            permissionId: e,
+                            roleId: id,
+                        })),
+                    });
+                });
+        })
+            .then(() => {
+            throw new ws_message_1.WsMessage(ws_message_1.HttpExceptionCode.SUCCEEDED);
+        });
+    }
     getAll() {
-        return this.db.role.findMany();
+        return this.db.role
+            .findMany({
+            include: {
+                rolePermission: {
+                    select: { permission: { select: { id: true, code: true } } },
+                },
+            },
+        })
+            .then((val) => base_response_1.BaseResponse.success(val));
     }
     create(body) {
         return this.db.role.create({ data: body });

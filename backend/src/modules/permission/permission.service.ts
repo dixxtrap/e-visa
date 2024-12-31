@@ -32,8 +32,8 @@ export class PermissionService implements OnModuleInit {
                   update: {},
                   where: { code: `${action}_${m.name}` },
                 })
-                .then((val) => {
-                  console.log(val.id);
+                .then(() => {
+                  // console.log(val.id);
                 })
                 .catch((e) => {
                   console.log(e);

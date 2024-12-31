@@ -5,5 +5,4 @@ export declare class UserDto implements Partial<User> {
     phone: string;
     email: string;
     roleId: number;
-    gymId: number;
 }

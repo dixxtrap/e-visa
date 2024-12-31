@@ -1,5 +1,11 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { PermissionDto } from './permission.dto';
+import {
+  IsArray,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from 'prisma/types';
@@ -9,13 +15,23 @@ export class RoleDto implements Partial<Role> {
   @IsString()
   @ApiProperty()
   name: string;
-  @IsNotEmpty()
+
   @IsString()
   @ApiProperty()
+  @IsOptional()
   comment: string;
   @IsNumber()
-  @IsNotEmpty()
   @ApiProperty()
+  @IsOptional()
   byId: number;
-  permissiuon: PermissionDto;
+}
+
+export class RoleUpdateDto extends RoleDto {
+  @IsOptional()
+  name: string;
+  @ApiProperty({ type: () => Number, isArray: true })
+  @IsArray()
+  @IsOptional()
+  @IsInt({ each: true })
+  permissionIds: number[];
 }

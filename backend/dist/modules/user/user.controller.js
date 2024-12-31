@@ -19,8 +19,8 @@ const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/requ
 const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
 const exception_catch_1 = require("../../exception/exception_catch");
 const exception_filters_decorator_1 = require("@nestjs/common/decorators/core/exception-filters.decorator");
-const ws_message_1 = require("../../exception/ws_message");
 const user_dto_1 = require("../../dto/user.dto");
+const id_param_1 = require("../../dto/id_param");
 let UserController = class UserController {
     constructor(userServide) {
         this.userServide = userServide;
@@ -28,8 +28,8 @@ let UserController = class UserController {
     create(body) {
         return this.userServide.create(body);
     }
-    getById() {
-        throw new ws_message_1.WsMessage(ws_message_1.HttpExceptionCode.SUCCEEDED);
+    getById(param) {
+        return this.userServide.getById(param.id);
     }
     getAll() {
         return this.userServide.getAll();
@@ -44,10 +44,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, request_mapping_decorator_1.Get)('id'),
+    (0, request_mapping_decorator_1.Get)(':id'),
     (0, exception_filters_decorator_1.UseFilters)(exception_catch_1.HttpExceptionFilter),
+    __param(0, (0, route_params_decorator_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [id_param_1.ParamIdDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "getById", null);
 __decorate([

@@ -10,36 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserDto = void 0;
-const IsNotEmpty_1 = require("class-validator/types/decorator/common/IsNotEmpty");
-const decorators_1 = require("class-validator/types/decorator/decorators");
-const IsEmail_1 = require("class-validator/types/decorator/string/IsEmail");
-const IsPhoneNumber_1 = require("class-validator/types/decorator/string/IsPhoneNumber");
-const IsNumber_1 = require("class-validator/types/decorator/typechecker/IsNumber");
+const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class UserDto {
 }
 exports.UserDto = UserDto;
 __decorate([
-    (0, IsNotEmpty_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "displayname", void 0);
 __decorate([
-    (0, decorators_1.Allow)(),
+    (0, class_validator_1.Allow)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "password", void 0);
 __decorate([
-    (0, IsPhoneNumber_1.IsPhoneNumber)(),
+    (0, class_validator_1.IsPhoneNumber)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "phone", void 0);
 __decorate([
-    (0, IsEmail_1.IsEmail)(),
+    (0, class_validator_1.IsEmail)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "email", void 0);
 __decorate([
-    (0, IsNumber_1.IsNumber)(),
+    (0, class_validator_1.IsNumber)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Number)
 ], UserDto.prototype, "roleId", void 0);
-__decorate([
-    (0, IsNumber_1.IsNumber)({ allowNaN: true }),
-    __metadata("design:type", Number)
-], UserDto.prototype, "gymId", void 0);
 //# sourceMappingURL=user.dto.js.map

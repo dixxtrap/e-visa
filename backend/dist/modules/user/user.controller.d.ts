@@ -1,5 +1,6 @@
 import { UserService } from './user.service';
 import { UserDto } from 'src/dto/user.dto';
+import { ParamIdDto } from 'src/dto/id_param';
 export declare class UserController {
     private readonly userServide;
     constructor(userServide: UserService);
@@ -16,16 +17,26 @@ export declare class UserController {
         displayname: string;
         phone: string;
         email: string;
-        companyId: number | null;
-        gymId: number | null;
+        address: string | null;
         loginId: number | null;
     }) | {
         meta: any;
         messages: string;
     }>;
-    getById(): void;
+    getById(param: ParamIdDto): Promise<Omit<{
+        id: number;
+        displayname: string;
+        phone: string;
+        email: string;
+        address: string | null;
+        loginId: number | null;
+    }, "loginId">>;
     getAll(): import("prisma/types").Prisma.PrismaPromise<({
         login: {
+            role: {
+                name: string;
+                id: number;
+            };
             username: string;
         };
     } & {
@@ -33,8 +44,7 @@ export declare class UserController {
         displayname: string;
         phone: string;
         email: string;
-        companyId: number | null;
-        gymId: number | null;
+        address: string | null;
         loginId: number | null;
     })[]>;
 }

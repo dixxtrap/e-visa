@@ -18,15 +18,26 @@ export declare class UserService {
         displayname: string;
         phone: string;
         email: string;
-        companyId: number | null;
-        gymId: number | null;
+        address: string | null;
         loginId: number | null;
     }) | {
         meta: any;
         messages: string;
     }>;
+    getById(id: number): Promise<Omit<{
+        id: number;
+        displayname: string;
+        phone: string;
+        email: string;
+        address: string | null;
+        loginId: number | null;
+    }, "loginId">>;
     getAll(): import("prisma/types").Prisma.PrismaPromise<({
         login: {
+            role: {
+                name: string;
+                id: number;
+            };
             username: string;
         };
     } & {
@@ -34,8 +45,7 @@ export declare class UserService {
         displayname: string;
         phone: string;
         email: string;
-        companyId: number | null;
-        gymId: number | null;
+        address: string | null;
         loginId: number | null;
     })[]>;
 }

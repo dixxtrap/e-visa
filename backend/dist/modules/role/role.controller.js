@@ -31,9 +31,9 @@ let RoleController = class RoleController {
     getAll() {
         return this.service.getAll();
     }
-    update(body) {
+    update(id, body) {
         console.log(body);
-        return this.service.create(body);
+        return this.service.update({ body, id });
     }
 };
 exports.RoleController = RoleController;
@@ -51,10 +51,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RoleController.prototype, "getAll", null);
 __decorate([
-    (0, request_mapping_decorator_1.Post)(),
-    __param(0, (0, route_params_decorator_1.Body)()),
+    (0, request_mapping_decorator_1.Patch)(':id'),
+    __param(0, (0, route_params_decorator_1.Param)('id')),
+    __param(1, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [role_dto_1.RoleDto]),
+    __metadata("design:paramtypes", [Number, role_dto_1.RoleUpdateDto]),
     __metadata("design:returntype", void 0)
 ], RoleController.prototype, "update", null);
 exports.RoleController = RoleController = __decorate([

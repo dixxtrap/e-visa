@@ -37,9 +37,24 @@ export class UserService {
         };
       });
   }
+  getById(id: number) {
+    console.log(id);
+    return this.db.user
+      .findFirstOrThrow({ where: { id: Number(id) } })
+      .then((val) => {
+        return excludeFields(val, ['loginId']);
+      });
+  }
   getAll() {
     return this.db.user.findMany({
-      include: { login: { select: { username: true } } },
+      include: {
+        login: {
+          select: {
+            username: true,
+            role: { select: { id: true, name: true } },
+          },
+        },
+      },
       where: {},
     });
   }

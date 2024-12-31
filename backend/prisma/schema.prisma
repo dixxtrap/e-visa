@@ -18,7 +18,7 @@ model Login {
   password String
   user     User[]
   Customer Customer[]
-  Role     Role?      @relation(fields: [roleId], references: [id])
+  role     Role?      @relation(fields: [roleId], references: [id])
   roleId   Int?
 
   @@unique([type, username])
@@ -27,9 +27,10 @@ model Login {
 }
 
 model Icon {
-  id   Int    @id @default(autoincrement())
-  path String
-  code String
+  id      Int    @id @default(autoincrement())
+  path    String
+  code    String
+  comment String @db.TinyText
 
   @@map("icon")
 }
@@ -66,7 +67,7 @@ model contactInfo {
   displayname   String
   phone         String
   customerId    Int?
-  VisaRequest   VisaRequest? @relation(fields: [visaRequestId], references: [id])
+  visaRequest   VisaRequest? @relation(fields: [visaRequestId], references: [id])
   visaRequestId Int?
 }
 
@@ -84,21 +85,18 @@ model RoadTripInfo {
   departureToId Int
 
   locationId  Int?
-  VisaRequest VisaRequest[]
+  visaRequest VisaRequest[]
 }
 
 // TODO: User
 model User {
-  id          Int    @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   displayname String
   phone       String
   email       String
-
-  companyId Int?
-
-  gymId   Int?
-  login   Login? @relation(fields: [loginId], references: [id])
-  loginId Int?
+  address     String?
+  login       Login?  @relation(fields: [loginId], references: [id])
+  loginId     Int?
 
   @@map("user")
 }
@@ -114,8 +112,8 @@ model Role {
   comment        String?
   byId           Int?
   isActive       Boolean          @default(true)
-  RolePermission RolePermission[]
-  Login          Login[]
+  rolePermission RolePermission[]
+  login          Login[]
 
   @@map("role")
 }
@@ -142,7 +140,7 @@ model Permission {
   action   PermissionActionEnum
 
   byId           Int?
-  RolePermission RolePermission[]
+  rolePermission RolePermission[]
 
   @@map("permission")
 }
@@ -152,7 +150,7 @@ model Permission {
 model Module {
   id         Int          @id @default(autoincrement())
   name       String       @unique
-  Permission Permission[]
+  permission Permission[]
 
   @@map("module")
 }
@@ -163,7 +161,7 @@ model Activity {
   name String @unique
 
   isActive Boolean    @default(false)
-  Customer Customer[]
+  customer Customer[]
 
   @@map("activity")
 }
@@ -174,7 +172,7 @@ model VisaType {
   name        String        @unique
   comment     String
   isActive    Boolean       @default(false)
-  VisaRequest VisaRequest[]
+  visaRequest VisaRequest[]
 
   @@map("visa_type")
 }
@@ -215,7 +213,7 @@ model LocationType {
   name String @unique
 
   isActive Boolean    @default(false)
-  Location Location[]
+  location Location[]
 
   @@map("location_type")
 }

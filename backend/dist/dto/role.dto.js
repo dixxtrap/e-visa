@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RoleDto = void 0;
+exports.RoleUpdateDto = exports.RoleDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 class RoleDto {
@@ -22,15 +22,29 @@ __decorate([
     __metadata("design:type", String)
 ], RoleDto.prototype, "name", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], RoleDto.prototype, "comment", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], RoleDto.prototype, "byId", void 0);
+class RoleUpdateDto extends RoleDto {
+}
+exports.RoleUpdateDto = RoleUpdateDto;
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], RoleUpdateDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: () => Number, isArray: true }),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsInt)({ each: true }),
+    __metadata("design:type", Array)
+], RoleUpdateDto.prototype, "permissionIds", void 0);
 //# sourceMappingURL=role.dto.js.map

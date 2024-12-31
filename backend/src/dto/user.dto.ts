@@ -1,21 +1,27 @@
-import { IsNotEmpty } from 'class-validator/types/decorator/common/IsNotEmpty';
-import { Allow } from 'class-validator/types/decorator/decorators';
-import { IsEmail } from 'class-validator/types/decorator/string/IsEmail';
-import { IsPhoneNumber } from 'class-validator/types/decorator/string/IsPhoneNumber';
-import { IsNumber } from 'class-validator/types/decorator/typechecker/IsNumber';
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  Allow,
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsPhoneNumber,
+} from 'class-validator';
 import { User } from 'prisma/types';
 
 export class UserDto implements Partial<User> {
   @IsNotEmpty()
+  @ApiProperty()
   displayname: string;
   @Allow()
+  @ApiProperty()
   password: string;
   @IsPhoneNumber()
+  @ApiProperty()
   phone: string;
   @IsEmail()
+  @ApiProperty()
   email: string;
   @IsNumber()
+  @ApiProperty()
   roleId: number;
-  @IsNumber({ allowNaN: true })
-  gymId: number;
 }
