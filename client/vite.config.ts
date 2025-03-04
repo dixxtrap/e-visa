@@ -7,7 +7,8 @@ export default defineConfig({
   preview: {
     port: 80,
     proxy: {
-      "/v1": "http://localhost:3000"
+      "/v1": "http://localhost:3000",
+
     }
   },
 
