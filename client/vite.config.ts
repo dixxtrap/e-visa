@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   preview: {
     port: 3002,
+    allowedHosts: true,
     proxy: {
       "/v1": "http://localhost:3000",
     }
