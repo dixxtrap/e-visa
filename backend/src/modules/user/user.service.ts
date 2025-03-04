@@ -37,10 +37,8 @@ export class UserService implements OnModuleInit {
           login: {
             create: {
               ...body.login,
-              username: body.phone,
+              username: body.email,
               type: LoginEnum.USER,
-
-
               password: this.crypto.hash(body.password),
             },
           },
