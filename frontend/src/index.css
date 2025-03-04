@@ -1,2 +1,49 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+:root {
+  --bg-input: #00000003;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  font-family: var(--font-serif) !important;
+  @apply font-stretch-100% font-serif;
+}
+
+#root {
+  height: 100vh;
+}
+.app_table td,
+.app_table th {
+  @apply text-left  whitespace-nowrap   border-y border-slate-300;
+}
+.app_table tbody tr:hover {
+  @apply bg-amber-500/40;
+}
+.app_table tr > td:last-child > div:last-child {
+  @apply flex items-start justify-end      font-medium gap-x-2;
+}
+.app_table tr > td:last-child.mobile {
+  @apply justify-start;
+}
+.input {
+  @apply outline-2 focus:ring-1  p-2 w-full overflow-hidden   focus:outline-green-600  rounded-sm outline-slate-300/75 h-10 px-1.5 bg-black/8;
+}
+.form {
+  @apply flex gap-3 flex-col;
+}
+
+.btn {
+  width: auto;
+  min-width: auto;
+  outline: var(--color-green-600) solid 1px;
+  background-color: unset !important;
+}
+.btn.filled {
+  @apply bg-gradient-to-r  from-green-300 text-black  to-green-400/60;
+}
+.btn.filled:hover {
+  @apply text-black bg-gradient-to-r from-10% via-20% from-green-300  via-green-400/60 to-green-400;
+}
