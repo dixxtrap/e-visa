@@ -3,30 +3,42 @@ import { UserService } from './user.service';
 import {
   Post,
   Get,
+  Patch,
 } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import {
   Body,
   Param,
+  Query,
 } from '@nestjs/common/decorators/http/route-params.decorator';
-import { HttpExceptionFilter } from 'src/exception/exception_catch';
-import { UseFilters } from '@nestjs/common/decorators/core/exception-filters.decorator';
-import { UserDto } from 'src/dto/user.dto';
+import { UserDto, UserUpdateDto } from 'src/dto/user.dto';
 import { ParamIdDto } from 'src/dto/id_param';
-
-@Controller('user')
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
+import { ApiBearerAuth } from '@nestjs/swagger/dist/decorators/api-bearer.decorator';
+import { Public } from '../security/is_public.meta';
+import { PaginationUserDto } from 'src/dto/pagination.dto';
+const Tag: string = 'user'
+@Controller(Tag)
+@ApiTags(Tag)
+@ApiBearerAuth()
 export class UserController {
-  constructor(private readonly userServide: UserService) {}
-  @Post()
+  constructor(private readonly userServide: UserService) { }
+  @Get('all')
+  @Public()
+  getAll(@Query() query:PaginationUserDto) {
+    return this.userServide.getAll({query});
+  }
+  @Get('by_id/:id')
+
+  getById(@Param('id') id: number) {
+    return this.userServide.getById(id);
+  }
+  @Post('create')
   create(@Body() body: UserDto) {
     return this.userServide.create(body);
   }
-  @Get(':id')
-  @UseFilters(HttpExceptionFilter)
-  getById(@Param() param: ParamIdDto) {
-    return this.userServide.getById(param.id);
-  }
-  @Get()
-  getAll() {
-    return this.userServide.getAll();
+
+  @Patch('by_id/:id')
+  updateById(@Param('id') id: number, @Body() body: UserUpdateDto) {
+    return this.userServide.updateById({ id, body });
   }
 }

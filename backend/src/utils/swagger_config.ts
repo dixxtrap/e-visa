@@ -2,10 +2,13 @@ import { DocumentBuilder } from '@nestjs/swagger/dist/document-builder';
 import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
 
 const config = new DocumentBuilder()
-  .setTitle('E-visa')
+  .setTitle('Evisa Senegal')
   .setDescription('The cats API description')
-  .setVersion('1.0')
-  .setContact('Djiga Salane', '', 'dakspro2007@gmail.com')
+  .setVersion('1.0').addBearerAuth().addCookieAuth("access_token", {
+    name: 'acces_token',
+    type: 'apiKey'
+  })
+  .setContact('Djiga Salane', 'https://daxfolio22.web.app', 'dakspro2007@gmail.com')
   .build();
 export const documentFactory = (app) =>
   SwaggerModule.createDocument(app, config);

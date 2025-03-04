@@ -10,41 +10,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoleUpdateDto = exports.RoleDto = void 0;
-const class_validator_1 = require("class-validator");
-const swagger_1 = require("@nestjs/swagger");
+const valid_string_1 = require("../decorateur/valid_string");
+const valid_number_1 = require("../decorateur/valid_number");
+const valid_boolean_1 = require("../decorateur/valid_boolean");
 class RoleDto {
 }
 exports.RoleDto = RoleDto;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, valid_string_1.IsValidStringApi)(),
     __metadata("design:type", String)
 ], RoleDto.prototype, "name", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, valid_boolean_1.IsValidBooleanOptionalApi)(),
+    __metadata("design:type", Boolean)
+], RoleDto.prototype, "isActive", void 0);
+__decorate([
+    (0, valid_string_1.IsValidStringOptionalApi)(),
     __metadata("design:type", String)
 ], RoleDto.prototype, "comment", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, valid_number_1.IsValidNumberOptionnalApi)(),
     __metadata("design:type", Number)
 ], RoleDto.prototype, "byId", void 0);
-class RoleUpdateDto extends RoleDto {
+class RoleUpdateDto {
 }
 exports.RoleUpdateDto = RoleUpdateDto;
 __decorate([
-    (0, class_validator_1.IsOptional)(),
+    (0, valid_string_1.IsValidStringOptionalApi)({ apiPropertyOptions: { required: false } }),
     __metadata("design:type", String)
 ], RoleUpdateDto.prototype, "name", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: () => Number, isArray: true }),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsInt)({ each: true }),
+    (0, valid_boolean_1.IsValidBooleanOptionalApi)({ apiPropertyOptions: { required: false } }),
+    __metadata("design:type", Boolean)
+], RoleUpdateDto.prototype, "isActive", void 0);
+__decorate([
+    (0, valid_string_1.IsValidStringOptionalApi)(),
+    __metadata("design:type", String)
+], RoleUpdateDto.prototype, "comment", void 0);
+__decorate([
+    (0, valid_number_1.IsValidNumberOptionnalArrayApi)({
+        apiPropertyOptions: { type: () => Number, isArray: true, required: false },
+        validationOptions: { each: true },
+    }),
     __metadata("design:type", Array)
 ], RoleUpdateDto.prototype, "permissionIds", void 0);
 //# sourceMappingURL=role.dto.js.map

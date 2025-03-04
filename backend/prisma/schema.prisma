@@ -1,127 +1,154 @@
 datasource db {
-  provider  = "mysql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = ["omitApi"]
-  output   = "types"
+  // binaryTargets = ["rhel-openssl-1.0.x"]
 }
 
-// TODO: Login
+// previewFeatures = ["omitApi"]
+// TODO: LOGIN
+
 model Login {
-  id       Int        @id @default(autoincrement())
-  type     LoginEnum
-  username String
-  password String
-  user     User[]
-  Customer Customer[]
-  role     Role?      @relation(fields: [roleId], references: [id])
-  roleId   Int?
+  id         Int       @id @default(autoincrement())
+  type       LoginEnum
+  username   String    @unique
+  password   String
+  user       User?     @relation(name: "login_to_user")
+  customer   Customer? @relation(name: "CustomerToLogin")
+  role       Role?     @relation(name: "LoginToRole", fields: [roleId], references: [id])
+  roleId     Int?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  isActive   Boolean   @default(false)
+  isBlocked  Boolean   @default(false)
+  isArchived Boolean   @default(false)
+  Opt        Opt[]
 
   @@unique([type, username])
   @@index([type])
   @@map("login")
 }
 
-model Icon {
-  id      Int    @id @default(autoincrement())
-  path    String
+model Asset {
+  id      Int           @id @default(autoincrement())
+  path    String?
   code    String
-  comment String @db.TinyText
+  comment String?       @db.TinyText
+  type    AssetTypeEnum @default(TEXT)
 
-  @@map("icon")
+  @@unique([type, code])
+  @@map("assets")
 }
 
-// TODO: Customer
+// TODO: CUSTOMER
+
 model Customer {
-  id                Int           @id @default(autoincrement())
-  displayname       String
-  dateOfBirth       String
-  selfPath          String
-  passportPath      String
-  passportReference String
-  passportValidity  DateTime
-  address           String
-  latitude          String
-  longitude         String
-  email             String
-  login             Login         @relation(fields: [loginId], references: [id])
-  activity          Activity      @relation(fields: [activityId], references: [id])
-  activityId        Int
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-  VisaRequest       VisaRequest[]
-  loginId           Int
+  displayname String
+  dateOfBirth DateTime?
+  address     String?
+  phone       String?
+  latitude    Decimal?      @default(0.0)
+  longitude   Decimal?      @default(0.0)
+  email       String
+  login       Login         @relation(name: "CustomerToLogin", fields: [loginId], references: [id])
+  loginId     Int           @id
+  activity    Activity?     @relation(name: "ActivityToCustomer", fields: [activityId], references: [id])
+  activityId  Int?
+  application Application[] @relation(name: "customer_to_visa_application")
 
   @@map("customer")
 }
 
-// TODO: Passport
+// TODO: PASSPORT
 
-// TODO: ContactInfo
-model contactInfo {
+model Passport {
+  id          Int           @id @default(autoincrement())
+  selfPath    String
+  path        String
+  reference   String
+  validity    DateTime
+  birthdate   DateTime
+  displayname String
+  customerid  Int
+  application Application[]
+  createdAt   DateTime?     @default(now())
+  updatedAt   DateTime?     @updatedAt
+
+  @@map("passport")
+}
+
+// TODO: CONTACT_INFO
+
+model ContactInfo {
   id            Int          @id @default(autoincrement())
   displayname   String
   phone         String
   customerId    Int?
-  visaRequest   VisaRequest? @relation(fields: [visaRequestId], references: [id])
-  visaRequestId Int?
+  application   Application? @relation(name: "visa_application_to_contact_info", fields: [applicationId], references: [id])
+  applicationId Int?
+
+  @@map("contact_info")
 }
 
-// TODO: User
+// TODO: ROAD_TRIP_INFO
+
 model RoadTripInfo {
-  id            Int      @id @default(autoincrement())
-  motif         String
-  arrivalFrom   String
-  arrivalDate   DateTime
-  arrivalBy     Location @relation(name: "arrivalBy", fields: [arrivalById], references: [id])
-  arrivalById   Int
-  departureBy   Location @relation(name: "departureBy", fields: [departureToId], references: [id])
-  departureTo   String
-  departureDate DateTime
-  departureToId Int
+  id                               Int         @id @default(autoincrement())
+  motif                            String
+  arrivalFrom                      String
+  arrivalDate                      DateTime
+  arrivalLocationType              String?
+  arrivalLocationCompanyName       String?
+  arrivalLocationCompanyIdentify   String?
+  departureTo                      String?
+  departureDate                    DateTime?
+  departureLocationType            String?
+  departureLocationCompanyName     String?
+  departureLocationCompanyIdentify String?
+  address                          String?
+  application                      Application @relation(name: "visa_application_to_road_tripInfo", fields: [applicationId], references: [id])
+  applicationId                    Int         @unique
 
-  locationId  Int?
-  visaRequest VisaRequest[]
+  @@map("road_trip_info")
 }
 
-// TODO: User
+// TODO: USER
+
 model User {
-  id          Int     @id @default(autoincrement())
+  login       Login   @relation(name: "login_to_user", fields: [loginId], references: [id])
+  loginId     Int     @id
   displayname String
   phone       String
   email       String
   address     String?
-  login       Login?  @relation(fields: [loginId], references: [id])
-  loginId     Int?
 
   @@map("user")
 }
 
-// TODO: Role
+// TODO: ROLE
 
 model Role {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
   createdAt      DateTime?        @default(now())
   updatedAt      DateTime?        @updatedAt
   comment        String?
   byId           Int?
   isActive       Boolean          @default(true)
-  rolePermission RolePermission[]
-  login          Login[]
+  rolePermission RolePermission[] @relation(name: "RoleToRolePermission")
+  login          Login[]          @relation(name: "LoginToRole")
 
   @@map("role")
 }
 
 // TODO: RolePermission
+
 model RolePermission {
-  role         Role       @relation(fields: [roleId], references: [id])
-  permission   Permission @relation(fields: [permissionId], references: [id])
+  role         Role       @relation(name: "RoleToRolePermission", fields: [roleId], references: [id])
+  permission   Permission @relation(name: "PermissionToRolePermission", fields: [permissionId], references: [id])
   roleId       Int
   permissionId Int
 
@@ -129,19 +156,33 @@ model RolePermission {
   @@map("role_permission")
 }
 
+model Opt {
+  id        Int             @id @default(autoincrement())
+  code      String
+  to        Login?          @relation(fields: [loginId], references: [id])
+  loginId   Int?
+  staus     OptStatusEnum   @default(PENDING)
+  duration  OptDurationEnum @default(MIN_15)
+  createdAt DateTime?       @default(now())
+  updatedAt DateTime?       @updatedAt
+  via       OptSendViaEnum
+
+  @@map("opt")
+}
+
 // TODO: Permission
 
 model Permission {
-  id       Int                  @id @default(autoincrement())
-  code     String               @unique
-  comment  String?
-  module   Module               @relation(fields: [moduleId], references: [id])
-  moduleId Int
-  action   PermissionActionEnum
-
+  id             Int                  @id @default(autoincrement())
+  code           String
+  comment        String?
+  module         Module               @relation(name: "ModuleToPermission", fields: [moduleId], references: [id])
+  moduleId       Int
+  action         PermissionActionEnum
   byId           Int?
-  rolePermission RolePermission[]
+  rolePermission RolePermission[]     @relation(name: "PermissionToRolePermission")
 
+  @@unique([code, moduleId])
   @@map("permission")
 }
 
@@ -150,99 +191,94 @@ model Permission {
 model Module {
   id         Int          @id @default(autoincrement())
   name       String       @unique
-  permission Permission[]
+  permission Permission[] @relation(name: "ModuleToPermission")
 
   @@map("module")
 }
 
 // TODO: Activity
-model Activity {
-  id   Int    @id @default(autoincrement())
-  name String @unique
 
+model Activity {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
   isActive Boolean    @default(false)
-  customer Customer[]
+  customer Customer[] @relation(name: "ActivityToCustomer")
 
   @@map("activity")
 }
 
 // TODO: VisaType
+
 model VisaType {
   id          Int           @id @default(autoincrement())
   name        String        @unique
   comment     String
-  isActive    Boolean       @default(false)
-  visaRequest VisaRequest[]
+  isActive    Boolean       @default(true)
+  amount      Decimal
+  application Application[] @relation(name: "visa_request_to_visa_type")
+  byId        Int?
+  createdAt   DateTime?     @default(now())
+  updatedAt   DateTime?     @updatedAt
 
   @@map("visa_type")
 }
 
 // TODO: VisaType
-model VisaRequest {
-  id             Int           @id @default(autoincrement())
-  name           String        @unique
-  contacts       contactInfo[]
-  visaType       VisaType      @relation(fields: [visaTypeId], references: [id])
-  isActive       Boolean       @default(false)
-  createdAt      DateTime      @default(now())
-  customer       Customer      @relation(fields: [customerId], references: [id])
-  roadTrip       RoadTripInfo  @relation(fields: [roadTripInfoId], references: [id])
-  visaTypeId     Int
-  roadTripInfoId Int
-  customerId     Int
 
-  @@map("visa_request")
+model Application {
+  id           Int             @id @default(autoincrement())
+  phone        String?
+  email        String?
+  address      String?
+  activity     String?
+  contacts     ContactInfo[]   @relation(name: "visa_application_to_contact_info")
+  visaType     VisaType?       @relation(name: "visa_request_to_visa_type", fields: [visaTypeId], references: [id])
+  isActive     Boolean         @default(false)
+  createdAt    DateTime        @default(now())
+  status       ApplicationEnum @default(PENDING)
+  customer     Customer?       @relation(name: "customer_to_visa_application", fields: [customerId], references: [loginId])
+  roadTripInfo RoadTripInfo?   @relation(name: "visa_application_to_road_tripInfo")
+  visaTypeId   Int?
+  passport     Passport?       @relation(fields: [passportid], references: [id])
+  passportid   Int?
+  customerId   Int?
+
+  @@map("application")
 }
 
 // TODO: Location
-model Location {
-  id             Int            @id @default(autoincrement())
-  name           String         @unique
-  isActive       Boolean        @default(false)
-  locationType   LocationType   @relation(fields: [locationTypeId], references: [id])
-  locationTypeId Int
-  departureBy    RoadTripInfo[] @relation("departureBy")
-  arrivalBy      RoadTripInfo[] @relation("arrivalBy")
 
-  @@map("location")
-}
+// model Location {
+//   id             Int            @id @default(autoincrement())
+//   name           String         @unique
+//   isActive       Boolean        @default(false)
+//   locationType   LocationType   @relation(name: "LocationToLocationType", fields: [locationTypeId], references: [id])
+//   locationTypeId Int
+//   departureBy    RoadTripInfo[] @relation(name: "departureBy")
+//   arrivalBy      RoadTripInfo[] @relation(name: "arrivalBy")
+
+//   @@map("location")
+// }
 
 // TODO: locationType
-model LocationType {
-  id   Int    @id @default(autoincrement())
-  name String @unique
 
-  isActive Boolean    @default(false)
-  location Location[]
+// model LocationType {
+//   id       Int        @id @default(autoincrement())
+//   name     String     @unique
+//   isActive Boolean    @default(false)
+//   location Location[] @relation(name: "LocationToLocationType")
 
-  @@map("location_type")
+//   @@map("location_type")
+// }
+enum ApplicationEnum {
+  PENDING
+  REFUSED
+  ACCEPTED
+  CLOSED
 }
 
-// DONE : model EntityBase 
-
-// model EntityBase {
-//   id   Int        @id @default(autoincrement())
-//   type EntityEnum
-
-//   @@map("entity_base")
-// }
-
-// TODO: WalletStatus
-
-// model WalletStatus {
-//   id Int @id @default(autoincrement())
-
-//   totalDebit   Decimal
-//   totalCredit  Decimal
-//   walletBaseId Int
-//   createdAt    DateTime? @default(now())
-
-//   @@map("wallet_status")
-// }
-
-// Enumeration==============================================================
 enum PermissionActionEnum {
-  ALL
+  MANAGE
   CREATE
   READ
   UPDATE
@@ -262,7 +298,35 @@ enum CardRequestEnum {
   REFUSED
 }
 
+enum AssetTypeEnum {
+  TEXT
+  IMAGE
+}
+
 enum LoginEnum {
   CUSTOMER
   USER
+}
+
+enum OptDurationEnum {
+  MIN_15
+  MIN_30
+  HOUR_1
+  HOUR_4
+  HOUR_12
+  DAY_1
+  DAY_30
+  INFINY
+}
+
+enum OptSendViaEnum {
+  SMS
+  MAIL
+}
+
+enum OptStatusEnum {
+  PENDING
+  SENT
+  VERIFIED
+  EXPIRED
 }

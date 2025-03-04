@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common/decorators/core/injectable.decorator';
 import { DatabaseService } from '../database/database.service';
 import { RoleDto, RoleUpdateDto } from 'src/dto/role.dto';
-import { OnModuleInit } from '@nestjs/common';
-import { BaseResponse } from 'src/utils/base_response';
+
+import {
+  HttpExceptionCode,
+  WsMessage,
+  WsMessageSuccess,
+} from 'src/exception/ws_message';
+import { OnModuleInit } from '@nestjs/common/interfaces/hooks';
 import { excludeFields } from 'src/utils/exclude_key';
-import { HttpExceptionCode, WsMessage } from 'src/exception/ws_message';
+import { BaseResponse } from 'src/utils/base_response';
+import { PaginationDto, PaginationSearchDto } from 'src/dto/pagination.dto';
+import { contains } from 'class-validator';
 
 @Injectable()
 export class RoleService implements OnModuleInit {
@@ -51,21 +58,46 @@ export class RoleService implements OnModuleInit {
         throw new WsMessage(HttpExceptionCode.SUCCEEDED);
       });
   }
-  getAll() {
+  getAll({ query }: { query: PaginationSearchDto }) {
+    const search = {
+      ...(query.search ? { name: { contains: query.search } } : {}),
+    };
     return this.db.role
       .findMany({
+        where: search,
         include: {
           rolePermission: {
             select: { permission: { select: { id: true, code: true } } },
           },
+          _count: {
+            select: {
+              rolePermission: true,
+              login: { where: { type: 'USER' } },
+            },
+          },
         },
       })
-      .then((val) => BaseResponse.success(val));
+      .then(async (val) =>
+        BaseResponse.successWithPagination(
+          val,
+          await this.db.role.count({ where: search }),
+          query.perpage,
+        ),
+      );
+  }
+  getById({ id }: { id: number }) {
+    return this.db.role
+      .findFirstOrThrow({
+        where: { id },
+        include: {
+          rolePermission: true,
+        },
+      })
+      .then(async (val) => BaseResponse.success(val));
   }
   create(body: RoleDto) {
-    // const data = excludeFields(body, ['id']);
-
-    // console.log(excludeFields(body, ['user', 'permission']));
-    return this.db.role.create({ data: body });
+    return this.db.role.create({ data: body }).then(() => {
+      throw WsMessageSuccess;
+    });
   }
 }

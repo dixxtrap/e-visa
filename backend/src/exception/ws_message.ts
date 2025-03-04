@@ -1,6 +1,6 @@
-import { HttpException } from '@nestjs/common';
+import { HttpException } from '@nestjs/common/exceptions/http.exception';
+
 export class WsMessage extends HttpException {
-  private code: string;
   constructor({
     message,
     status,
@@ -15,31 +15,21 @@ export class WsMessage extends HttpException {
         message,
         code,
         // sessionExpired: status === 401 ? true : false,
-        status: status === 200 ? true : false,
+        status: status === 200,
       },
       status,
     );
     this.name = 'CustomError';
-    this.code = code;
     Object.setPrototypeOf(this, WsMessage.prototype);
   }
 }
 export const HttpExceptionCode = {
-  LOGIN_SUCCESS: {
-    code: 'SUCCEEDED',
-    status: 200,
-    message: ['Connexion etablie avec success'],
-  },
   LOGIN_FAILLURE: {
     code: 'FAILLURE',
     status: 401,
     message: ['Identifiant de connexion incorrect'],
   },
-  LOGOUT_SUCCESS: {
-    code: 'SUCCEEDED',
-    status: 200,
-    message: ['DEconnexion reussi avec success'],
-  },
+
   SUCCEEDED: {
     code: 'SUCCEEDED',
     status: 200,
@@ -61,7 +51,7 @@ export const HttpExceptionCode = {
     message: ["Une Erreur c'est produite vueillez réessayer"],
   },
   INSUFFISANT_BALANCE: {
-    code: 'faillure',
+    code: 'INSUFFISANT_BALANCE',
     status: 500,
     message: ['Solde insufficasant'],
   },
@@ -75,4 +65,11 @@ export const HttpExceptionCode = {
     status: 404,
     message: ['Entity not found'],
   },
+};
+
+export const WsMessageSuccess = new WsMessage(HttpExceptionCode.SUCCEEDED);
+export const WsMessageNotFound = new WsMessage(HttpExceptionCode.NOT_FOUND);
+export const throwSuccess = (val) => {
+  console.log(val)
+  throw WsMessageSuccess;
 };

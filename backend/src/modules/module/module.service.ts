@@ -11,7 +11,7 @@ export class ModuleService implements OnModuleInit {
   getTable() {
     this.prismaService.$queryRaw<{ name: string }[]>`SELECT table_name as name
     FROM information_schema.tables
-    WHERE table_schema = 'e-visa'
+    WHERE table_schema = ${process.env.DB_NAME}
       AND table_type = 'BASE TABLE';`.then((val) => {
       console.log(val);
       Promise.all(

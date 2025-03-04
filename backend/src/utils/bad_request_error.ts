@@ -2,12 +2,11 @@ import { BadRequestException } from '@nestjs/common/exceptions/bad-request.excep
 import { ValidationError } from '@nestjs/common/interfaces/external/validation-error.interface';
 
 export const badRequestExceptionCatch = (errors: ValidationError[]) => {
-  console.log(errors);
   const messages = [];
-  errors.map((error) =>
+  errors.forEach((error) =>
     Object.entries(error.constraints).forEach((value) => {
       messages.push(`${error.property} : ${value[1]}`);
     }),
   );
-  return new BadRequestException(messages);
+  return new BadRequestException({messages, code :"BAD_REQUEST", status:400});
 };

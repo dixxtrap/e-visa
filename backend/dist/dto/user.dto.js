@@ -9,35 +9,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDto = void 0;
+exports.UserUpdateDto = exports.UserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
+const valid_email_1 = require("../decorateur/valid_email");
+const valid_phone_1 = require("../decorateur/valid_phone");
+const valid_string_1 = require("../decorateur/valid_string");
+const login_dto_1 = require("./login.dto");
 class UserDto {
 }
 exports.UserDto = UserDto;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, valid_string_1.IsValidStringApi)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "displayname", void 0);
 __decorate([
-    (0, class_validator_1.Allow)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, valid_string_1.IsValidStringApi)(),
+    __metadata("design:type", String)
+], UserDto.prototype, "address", void 0);
+__decorate([
+    (0, valid_string_1.IsValidStringOptionalApi)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "password", void 0);
 __decorate([
-    (0, class_validator_1.IsPhoneNumber)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, valid_phone_1.IsValidPhoneApi)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "phone", void 0);
 __decorate([
-    (0, class_validator_1.IsEmail)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, valid_email_1.IsValidEmailApi)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "email", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
     (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", Number)
-], UserDto.prototype, "roleId", void 0);
+    (0, class_validator_1.Allow)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", login_dto_1.LoginUpdateDto)
+], UserDto.prototype, "login", void 0);
+class UserUpdateDto extends UserDto {
+}
+exports.UserUpdateDto = UserUpdateDto;
+__decorate([
+    (0, valid_string_1.IsValidStringOptionalApi)(),
+    __metadata("design:type", String)
+], UserUpdateDto.prototype, "displayname", void 0);
+__decorate([
+    (0, valid_phone_1.IsValidPhoneOptionalApi)(),
+    __metadata("design:type", String)
+], UserUpdateDto.prototype, "phone", void 0);
+__decorate([
+    (0, valid_string_1.IsValidStringOptionalApi)(),
+    __metadata("design:type", String)
+], UserUpdateDto.prototype, "address", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.Allow)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", login_dto_1.LoginUpdateDto)
+], UserUpdateDto.prototype, "login", void 0);
 //# sourceMappingURL=user.dto.js.map

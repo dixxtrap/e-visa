@@ -1,50 +1,45 @@
 import { UserService } from './user.service';
-import { UserDto } from 'src/dto/user.dto';
-import { ParamIdDto } from 'src/dto/id_param';
+import { UserDto, UserUpdateDto } from 'src/dto/user.dto';
+import { PaginationUserDto } from 'src/dto/pagination.dto';
 export declare class UserController {
     private readonly userServide;
     constructor(userServide: UserService);
-    create(body: UserDto): Promise<({
-        login: {
-            id: number;
-            password: string;
-            roleId: number | null;
-            type: import("prisma/types").$Enums.LoginEnum;
-            username: string;
-        };
-    } & {
-        id: number;
-        displayname: string;
-        phone: string;
-        email: string;
-        address: string | null;
-        loginId: number | null;
-    }) | {
-        meta: any;
-        messages: string;
-    }>;
-    getById(param: ParamIdDto): Promise<Omit<{
-        id: number;
-        displayname: string;
-        phone: string;
-        email: string;
-        address: string | null;
-        loginId: number | null;
-    }, "loginId">>;
-    getAll(): import("prisma/types").Prisma.PrismaPromise<({
+    getAll(query: PaginationUserDto): Promise<import("../../utils/base_response").BaseResponse<({
         login: {
             role: {
-                name: string;
                 id: number;
+                isActive: boolean;
+                createdAt: Date | null;
+                name: string;
+                updatedAt: Date | null;
+                comment: string | null;
+                byId: number | null;
             };
+        } & {
+            id: number;
+            isActive: boolean;
+            createdAt: Date;
+            updatedAt: Date;
+            type: import(".prisma/client").$Enums.LoginEnum;
             username: string;
+            roleId: number | null;
+            isBlocked: boolean;
+            isArchived: boolean;
         };
     } & {
-        id: number;
-        displayname: string;
         phone: string;
         email: string;
         address: string | null;
-        loginId: number | null;
-    })[]>;
+        displayname: string;
+        loginId: number;
+    })[]>>;
+    getById(id: number): Promise<import("../../utils/base_response").BaseResponse<{} & {
+        phone: string;
+        email: string;
+        address: string | null;
+        displayname: string;
+        loginId: number;
+    }>>;
+    create(body: UserDto): Promise<never>;
+    updateById(id: number, body: UserUpdateDto): Promise<never>;
 }

@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoleService = void 0;
 const injectable_decorator_1 = require("@nestjs/common/decorators/core/injectable.decorator");
 const database_service_1 = require("../database/database.service");
-const base_response_1 = require("../../utils/base_response");
-const exclude_key_1 = require("../../utils/exclude_key");
 const ws_message_1 = require("../../exception/ws_message");
+const exclude_key_1 = require("../../utils/exclude_key");
+const base_response_1 = require("../../utils/base_response");
 let RoleService = class RoleService {
     constructor(db) {
         this.db = db;
@@ -60,19 +60,41 @@ let RoleService = class RoleService {
             throw new ws_message_1.WsMessage(ws_message_1.HttpExceptionCode.SUCCEEDED);
         });
     }
-    getAll() {
+    getAll({ query }) {
+        const search = {
+            ...(query.search ? { name: { contains: query.search } } : {}),
+        };
         return this.db.role
             .findMany({
+            where: search,
             include: {
                 rolePermission: {
                     select: { permission: { select: { id: true, code: true } } },
                 },
+                _count: {
+                    select: {
+                        rolePermission: true,
+                        login: { where: { type: 'USER' } },
+                    },
+                },
             },
         })
-            .then((val) => base_response_1.BaseResponse.success(val));
+            .then(async (val) => base_response_1.BaseResponse.successWithPagination(val, await this.db.role.count({ where: search }), query.perpage));
+    }
+    getById({ id }) {
+        return this.db.role
+            .findFirstOrThrow({
+            where: { id },
+            include: {
+                rolePermission: true,
+            },
+        })
+            .then(async (val) => base_response_1.BaseResponse.success(val));
     }
     create(body) {
-        return this.db.role.create({ data: body });
+        return this.db.role.create({ data: body }).then(() => {
+            throw ws_message_1.WsMessageSuccess;
+        });
     }
 };
 exports.RoleService = RoleService;

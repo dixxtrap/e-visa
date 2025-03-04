@@ -1,24 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { $Enums, Permission } from 'prisma/types';
-import { IsEnum } from 'class-validator';
-import { IsNotEmpty } from 'class-validator/types/decorator/common/IsNotEmpty';
-import { IsNumber } from 'class-validator/types/decorator/typechecker/IsNumber';
-import { IsString } from 'class-validator/types/decorator/typechecker/IsString';
+import { $Enums, Permission } from '@prisma/client';
+import { IsValidEnumApi } from 'src/decorateur/valid_enum';
+import { IsValidNumberApi } from 'src/decorateur/valid_number';
+import { IsValidStringApi, IsValidStringOptionalApi } from 'src/decorateur/valid_string';
 
 export class PermissionDto implements Partial<Permission> {
-  @IsNotEmpty()
-  @IsString()
-  code?: string;
-  @IsNumber()
-  byId?: number;
-  @IsEnum($Enums.PermissionActionEnum)
-  action?: $Enums.PermissionActionEnum;
-  @IsNumber()
-  @ApiProperty()
-  @IsNotEmpty()
-  moduleId?: number;
-  @IsNotEmpty()
-  @IsString()
-  @ApiProperty()
+  @IsValidStringApi()
+  code: string;
+  @IsValidEnumApi<$Enums.PermissionActionEnum>(Object.values($Enums.PermissionActionEnum))
+  action: $Enums.PermissionActionEnum;
+  @IsValidNumberApi()
+  moduleId: number;
+  @IsValidStringOptionalApi()
   comment?: string;
 }

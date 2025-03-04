@@ -17,48 +17,64 @@ const controller_decorator_1 = require("@nestjs/common/decorators/core/controlle
 const user_service_1 = require("./user.service");
 const request_mapping_decorator_1 = require("@nestjs/common/decorators/http/request-mapping.decorator");
 const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
-const exception_catch_1 = require("../../exception/exception_catch");
-const exception_filters_decorator_1 = require("@nestjs/common/decorators/core/exception-filters.decorator");
 const user_dto_1 = require("../../dto/user.dto");
-const id_param_1 = require("../../dto/id_param");
+const api_use_tags_decorator_1 = require("@nestjs/swagger/dist/decorators/api-use-tags.decorator");
+const api_bearer_decorator_1 = require("@nestjs/swagger/dist/decorators/api-bearer.decorator");
+const is_public_meta_1 = require("../security/is_public.meta");
+const pagination_dto_1 = require("../../dto/pagination.dto");
+const Tag = 'user';
 let UserController = class UserController {
     constructor(userServide) {
         this.userServide = userServide;
     }
+    getAll(query) {
+        return this.userServide.getAll({ query });
+    }
+    getById(id) {
+        return this.userServide.getById(id);
+    }
     create(body) {
         return this.userServide.create(body);
     }
-    getById(param) {
-        return this.userServide.getById(param.id);
-    }
-    getAll() {
-        return this.userServide.getAll();
+    updateById(id, body) {
+        return this.userServide.updateById({ id, body });
     }
 };
 exports.UserController = UserController;
 __decorate([
-    (0, request_mapping_decorator_1.Post)(),
+    (0, request_mapping_decorator_1.Get)('all'),
+    (0, is_public_meta_1.Public)(),
+    __param(0, (0, route_params_decorator_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [pagination_dto_1.PaginationUserDto]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "getAll", null);
+__decorate([
+    (0, request_mapping_decorator_1.Get)('by_id/:id'),
+    __param(0, (0, route_params_decorator_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "getById", null);
+__decorate([
+    (0, request_mapping_decorator_1.Post)('create'),
     __param(0, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, request_mapping_decorator_1.Get)(':id'),
-    (0, exception_filters_decorator_1.UseFilters)(exception_catch_1.HttpExceptionFilter),
-    __param(0, (0, route_params_decorator_1.Param)()),
+    (0, request_mapping_decorator_1.Patch)('by_id/:id'),
+    __param(0, (0, route_params_decorator_1.Param)('id')),
+    __param(1, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [id_param_1.ParamIdDto]),
+    __metadata("design:paramtypes", [Number, user_dto_1.UserUpdateDto]),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "getById", null);
-__decorate([
-    (0, request_mapping_decorator_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UserController.prototype, "getAll", null);
+], UserController.prototype, "updateById", null);
 exports.UserController = UserController = __decorate([
-    (0, controller_decorator_1.Controller)('user'),
+    (0, controller_decorator_1.Controller)(Tag),
+    (0, api_use_tags_decorator_1.ApiTags)(Tag),
+    (0, api_bearer_decorator_1.ApiBearerAuth)(),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

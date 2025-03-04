@@ -3,6 +3,7 @@ import { RoleService } from './role.service';
 import {
   Body,
   Param,
+  Query,
 } from '@nestjs/common/decorators/http/route-params.decorator';
 import {
   Get,
@@ -10,13 +11,25 @@ import {
   Post,
 } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { RoleDto, RoleUpdateDto } from 'src/dto/role.dto';
-import { HttpExceptionFilter } from 'src/exception/exception_catch';
-import { UseFilters } from '@nestjs/common/decorators/core/exception-filters.decorator';
-@UseFilters(HttpExceptionFilter)
-@Controller('role')
+import { PaginationDto, PaginationSearchDto } from 'src/dto/pagination.dto';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
+import { ApiConsumes } from '@nestjs/swagger/dist/decorators/api-consumes.decorator';
+const Tag:string='role'
+@Controller(Tag)
+@ApiTags(Tag)
 export class RoleController {
   constructor(private readonly service: RoleService) {}
-  @Post()
+
+  @Get('all')
+  getAll(@Query() query:PaginationSearchDto) {
+    return this.service.getAll({query});
+  }
+  @Get('by_id/:id')
+  getOne(@Param('id') id: number) {
+    return this.service.getById({ id });
+  }
+  @Post('create')
+  // @ApiConsumes('multipart/form-data')
   create(
     @Body()
     body: RoleDto,
@@ -24,11 +37,7 @@ export class RoleController {
     console.log(body);
     return this.service.create(body);
   }
-  @Get()
-  getAll() {
-    return this.service.getAll();
-  }
-  @Patch(':id')
+  @Patch('by_id/:id')
   update(
     @Param('id') id: number,
     @Body()

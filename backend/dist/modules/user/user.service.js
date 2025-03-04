@@ -10,67 +10,99 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
-const types_1 = require("../../../prisma/types/index.js");
+const client_1 = require("@prisma/client");
 const database_service_1 = require("../database/database.service");
 const common_1 = require("@nestjs/common");
-const crypto_service_1 = require("../../utils/crypto_service");
 const exclude_key_1 = require("../../utils/exclude_key");
+const crypto_service_1 = require("../../utils/crypto_service");
+const ws_message_1 = require("../../exception/ws_message");
+const config_1 = require("@nestjs/config");
+const base_response_1 = require("../../utils/base_response");
+const mailer_service_1 = require("../mailer/mailer.service");
+const create_admin_factory_1 = require("./factory/create_admin.factory");
 let UserService = class UserService {
-    constructor(db, crypto) {
+    constructor(db, crypto, config, mailer) {
         this.db = db;
         this.crypto = crypto;
+        this.config = config;
+        this.mailer = mailer;
+    }
+    onModuleInit() {
+        this.createAdminUser();
+    }
+    createAdminUser() {
+        return (0, create_admin_factory_1.createAdminFactory)(this.db, this.config, this.crypto);
     }
     create(body) {
         console.log(body);
         return this.db.user
             .create({
             data: {
-                ...(0, exclude_key_1.excludeFields)(body, ['password', 'roleId']),
+                ...(0, exclude_key_1.excludeFields)(body, ['password',]),
                 login: {
                     create: {
+                        ...body.login,
                         username: body.phone,
-                        type: types_1.LoginEnum.USER,
-                        roleId: body.roleId,
-                        password: this.crypto.createHash(body.password),
+                        type: client_1.LoginEnum.USER,
+                        password: this.crypto.hash(body.password),
                     },
                 },
             },
             include: { login: true },
         })
-            .catch((e) => {
-            console.log(typeof e);
-            return {
-                meta: e.meta,
-                messages: e.message.split('\n')[e.message.split('\n').length - 1],
-            };
-        });
+            .then((val) => {
+            const code = this.crypto.encrypt(`${val.loginId}_${new Date().getTime()}`);
+            return this.db.opt.create({
+                data: { via: 'MAIL', duration: "HOUR_12", code: code, loginId: val.loginId },
+            }).then(() => {
+                return this.mailer.sendUserConfirmation({
+                    email: 'djiga2015@gmail.com',
+                    token: code,
+                });
+            });
+        }).then(ws_message_1.throwSuccess);
+    }
+    updateById({ body, id }) {
+        console.log(body);
+        return this.db.user
+            .update({
+            where: { loginId: id },
+            data: {
+                ...(0, exclude_key_1.excludeFields)(body, ['login']),
+                login: {
+                    update: {
+                        data: { ...body.login }
+                    }
+                }
+            },
+        })
+            .then(ws_message_1.throwSuccess);
     }
     getById(id) {
         console.log(id);
         return this.db.user
-            .findFirstOrThrow({ where: { id: Number(id) } })
+            .findFirstOrThrow({ where: { loginId: Number(id) }, include: {} })
             .then((val) => {
-            return (0, exclude_key_1.excludeFields)(val, ['loginId']);
+            return base_response_1.BaseResponse.success(val);
         });
     }
-    getAll() {
-        return this.db.user.findMany({
+    getAll({ query }) {
+        return this.db.user
+            .findMany({
             include: {
-                login: {
-                    select: {
-                        username: true,
-                        role: { select: { id: true, name: true } },
-                    },
-                },
+                login: { include: { role: true }, omit: { password: true } },
             },
             where: {},
-        });
+        })
+            .then((val) => base_response_1.BaseResponse.successWithPagination(val, 1, query.perpage));
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [database_service_1.DatabaseService,
-        crypto_service_1.CryptoService])
+        crypto_service_1.CryptoService,
+        config_1.ConfigService,
+        mailer_service_1.EmailerService])
 ], UserService);
 //# sourceMappingURL=user.service.js.map
