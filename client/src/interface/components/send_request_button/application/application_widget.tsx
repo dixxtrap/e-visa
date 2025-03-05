@@ -60,9 +60,6 @@ export const ApplicationWidget = ({
           <div className=" pt-10 bg-red-500/0 sticky top-0 md:min-w-[260px]  md:flex gap-5 hidden flex-col ">
             {items.map((e) => (
               <button
-                onClick={() => {
-                  setLabel(e.key);
-                }}
                 className={`flex items-center cursor-pointer px-2 gap-2 ${
                   label === e.key ? " font-bold " : label > e.key ? "" : ""
                 }`}
