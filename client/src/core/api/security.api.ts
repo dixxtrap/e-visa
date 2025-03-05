@@ -1,6 +1,6 @@
 import {  createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BaseResponse, WsMessage } from "../model/base_response";
-import { UserDto } from "../model/user";
+import { SignupDto } from "../model/user";
 import { LoginDto } from "../model/login";
 
 export const SecurityApi = createApi({
@@ -18,9 +18,9 @@ export const SecurityApi = createApi({
                 invalidatesTags: ["securityApi"]
             }
         ),
-        signup: build.mutation<WsMessage, Omit<LoginDto, "username">&UserDto>(
+        signup: build.mutation<WsMessage, SignupDto>(
             {
-                query: (body) => ({ url: "/security/signin", body, method: "POST" }),
+                query: (body) => ({ url: "/customer/create", body, method: "POST" }),
                 invalidatesTags: ["securityApi"]
             }
         )

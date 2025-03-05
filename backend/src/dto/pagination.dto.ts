@@ -21,6 +21,14 @@ export class PaginationUserDto extends PaginationDto {
   @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
   username: string;
 }
+export class PaginationCustomerDto extends PaginationDto {
+  @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
+  displayname: string;
+  @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
+  phone: string;
+  @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
+  email: string;
+}
 
 export const getPaginationParams = (query: PaginationDto) => ({
   skip: (Number(query.page) - 1) * Number(query.perpage),

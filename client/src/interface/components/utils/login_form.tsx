@@ -15,7 +15,7 @@ export const LoginForm: FC<LoginFormProps> = ({ children }) => {
   const [isSignup, setIsSignup] = useState(false);
   return (
     <>
-      {profile.isError && (
+      {(profile.isError || !profile.data?.data.customer) && (
         <AppBtnFilled
           className="p-0 border-none ring-0 outline-none m-0 "
           title=""

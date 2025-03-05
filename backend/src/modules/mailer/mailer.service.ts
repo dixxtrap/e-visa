@@ -32,16 +32,30 @@ private mailer:MailerService,
   }
 
   async sendUserConfirmation({ email, token }: { email: string; token: string }) {
-    console.log(this.config.get<string>('SYSTEM_EMAIL_HOSTNAME'));
-    console.log(this.config.get<string>('SYSTEM_EMAIL_PORT'));
-    console.log(this.config.get<string>('SYSTEM_EMAIL_ADDRESS'));
-    console.log(this.config.get<string>('SYSTEM_EMAIL_PASSWORD'));
+
 
     return await this.mailer
       .sendMail({
         to: email,
         subject: 'Welcome to My App!',
         html:mailTemplate({content: ` click to this link to define your  <a href="${this.config.getOrThrow('FRONTEND_BASE_URL')}/define-password/${token}">password </a>`})
+      })
+      .then((val) => {
+        console.log(val);
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  async sendCustomerValidation({ email, token }: { email: string; token: string }) {
+
+
+    return await this.mailer
+      .sendMail({
+        to: email,
+        subject: 'Welcome to My App!',
+        html:mailTemplate({content: ` click to this link to confirme your  <a href="${this.config.getOrThrow('CLIENT_BASE_URL')}/account-validation/${token}">password </a>`})
       })
       .then((val) => {
         console.log(val);

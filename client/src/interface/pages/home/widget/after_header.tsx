@@ -1,3 +1,4 @@
+import { SecurityApi } from "../../../../core/api/security.api";
 import {
   img_after_header,
   img_bg_color,
@@ -7,6 +8,7 @@ import { SendRequestButton } from "../../../components/send_request_button/send_
 import { CheckRequestButton } from "../../../components/utils/check_request_button";
 
 export const AfterHeader = () => {
+  const profile = SecurityApi.useProfileQuery();
   return (
     <div className="w-[100dvw] flex relative">
       <img
@@ -37,10 +39,12 @@ export const AfterHeader = () => {
             <br></br> <span>en toute simplicité.</span>
           </p>
           <div className="h-[2vh] md:h-[6vh] lg:h-[10vh]"></div>
-          <div className="gap-4 flex px-1">
-            <SendRequestButton />
-            <CheckRequestButton />
-          </div>
+          {profile.isSuccess && profile.data?.data.customer && (
+            <div className="gap-4 flex px-1">
+              <SendRequestButton />
+              <CheckRequestButton />
+            </div>
+          )}
         </div>
       </div>
     </div>

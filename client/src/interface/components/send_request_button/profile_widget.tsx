@@ -6,7 +6,7 @@ export const ProfileWidget = () => {
   const profile = SecurityApi.useProfileQuery();
   return (
     <>
-      {profile.isSuccess && (
+      {profile.data?.data.customer && (
         <>
           <div className="flex outline  px-3 py-2 rounded-md items-center gap-3">
             <span>{profile.data.data.customer?.displayname ?? ""}</span>

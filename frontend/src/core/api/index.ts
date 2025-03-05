@@ -6,6 +6,7 @@ import { PermissionApi } from "./permission.api";
 import { RoleApi } from "./role.api";
 import { UserApi } from "./user.api";
 import { VisaTypeAPi } from "./visa_type.api";
+import { CustomerApi } from "./customer.api";
 const store = configureStore({
     reducer: {
         [SecurityApi.reducerPath]: SecurityApi.reducer,
@@ -14,7 +15,7 @@ const store = configureStore({
         [RoleApi.reducerPath]:RoleApi.reducer,
         [UserApi.reducerPath]:UserApi.reducer,
         [VisaTypeAPi.reducerPath]:VisaTypeAPi.reducer,
-
+[CustomerApi.reducerPath]:CustomerApi.reducer,
     },
     middleware: (gDM) =>
         gDM().concat(
@@ -24,6 +25,7 @@ const store = configureStore({
             RoleApi.middleware,
             UserApi.middleware,
             VisaTypeAPi.middleware,
+            CustomerApi.middleware,
 
         )
 });

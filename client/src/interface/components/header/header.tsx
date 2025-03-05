@@ -1,11 +1,9 @@
 import { img_logo } from "../../../utils/assets";
 import { HeaderNavWeb } from "./header_nav";
 import { LoginForm } from "../utils/login_form";
-import { SecurityApi } from "../../../core/api/security.api";
 import { ProfileWidget } from "../send_request_button/profile_widget";
 
 export const Header = () => {
-  const profile = SecurityApi.useProfileQuery();
   return (
     <>
       <div className="md:h-20 h-15 "></div>
@@ -25,8 +23,8 @@ export const Header = () => {
             <HeaderNavWeb />
           </div>
           <div className="flex gap-3 items-center">
-             <LoginForm />
-            {profile.isSuccess && <ProfileWidget />}
+            <LoginForm />
+            <ProfileWidget />
           </div>
         </div>
       </div>

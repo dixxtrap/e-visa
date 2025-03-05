@@ -13,7 +13,7 @@ export const VisaTypeList = () => {
     page: 1,
     perpage: 20,
   });
-  const { data: visaData,  } = VisaTypeAPi.useAllQuery(query);
+  const { data: visaData } = VisaTypeAPi.useAllQuery(query);
   return (
     <div>
       <AppTablePagination
@@ -41,20 +41,18 @@ export const VisaTypeList = () => {
             <Table.Td>{new Date(e.createdAt!).toLocaleString()}</Table.Td>
 
             <Table.Td>
-              <div className="flex">
-                <div
-                  className={clsx(
-                    "outline w-20 text-center rounded-md bg-linear-30 px-2",
-                    {
-                      " outline-green-600/40 text-green-950 from-green-100 to-green-200":
-                        e.isActive,
-                      "outline-rose-600/40 text-rose-950 from-rose-100 to-rose-200":
-                        !e.isActive,
-                    }
-                  )}
-                >
-                  {e.isActive ? "active" : "Desactiver"}
-                </div>
+              <div
+                className={clsx(
+                  "outline w-20 text-center rounded-md bg-linear-30 px-2",
+                  {
+                    " outline-green-600/40 text-green-950 from-green-100 to-green-200":
+                      e.isActive,
+                    "outline-rose-600/40 text-rose-950 from-rose-100 to-rose-200":
+                      !e.isActive,
+                  }
+                )}
+              >
+                {e.isActive ? "active" : "Desactiver"}
               </div>
             </Table.Td>
 

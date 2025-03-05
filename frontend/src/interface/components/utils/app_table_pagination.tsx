@@ -10,7 +10,11 @@ interface AppTablePaginationProps {
   totalPage?: number;
   rows?: ReactNode[];
   query: PaginationDto;
-    setQuery?: (statePartial: Partial<PaginationDto> | ((currentState: PaginationDto) => Partial<PaginationDto>)) => void;
+  setQuery?: (
+    statePartial:
+      | Partial<PaginationDto>
+      | ((currentState: PaginationDto) => Partial<PaginationDto>)
+  ) => void;
   cols?: string[];
 }
 const AppTablePagination: FC<AppTablePaginationProps> = ({
@@ -55,19 +59,23 @@ const AppTablePagination: FC<AppTablePaginationProps> = ({
               ))}
             </Table.Tr>
           </Table.Thead>
-        { rows&& <Table.Tbody className="  p-0  m-0 bg-red-500/0">
-            {rows?.map((e) => e)}
-          </Table.Tbody>}
+          {rows && (
+            <Table.Tbody className="  p-0  m-0 bg-red-500/0">
+              {rows?.map((e) => e)}
+            </Table.Tbody>
+          )}
         </Table>
       </ScrollAreaAutosize>
-      {totalPage!==null && (
+      {totalPage !== null && (
         <div className="flex  items-end justify-between">
           <div>
-                      <AppSelect
-                          width={"100px"}
-                          value={`${query.perpage}`}
-                          classNames={{input:"max-w-[120px]"}}
-                          onChange={(value)=>{setQuery!({perpage:Number(value), page:1})}}
+            <AppSelect
+              width={"100px"}
+              value={`${query.perpage}`}
+              classNames={{ input: "max-w-[120px]" }}
+              onChange={(value) => {
+                setQuery!({ perpage: Number(value), page: 1 });
+              }}
               data={[10, 20, 50, 100].map((e) => ({
                 label: `${e}`,
                 value: `${e}`,
@@ -77,17 +85,18 @@ const AppTablePagination: FC<AppTablePaginationProps> = ({
           </div>
           <Pagination
             color="var(--color-green-300)"
-                      styles={{ control: {border:'none', color:'black'} }}
+            styles={{ control: { border: "none", color: "black" } }}
             value={query.page}
-
-            classNames={{ control: "outline-slate-600/70 outline text-black  " }}
+            classNames={{
+              control: "outline-slate-600/70 outline text-black  ",
+            }}
             onPreviousPage={() => {
               setQuery!((prev) => ({ page: prev.page - 1 }));
             }}
             onNextPage={() => {
               setQuery!((prev) => ({ page: prev.page + 1 }));
             }}
-            total={totalPage??1}
+            total={totalPage ?? 1}
           />
         </div>
       )}

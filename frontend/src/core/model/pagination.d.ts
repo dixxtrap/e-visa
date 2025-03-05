@@ -14,3 +14,8 @@ export interface PaginationUserDto extends PaginationDto{
     phone?: string;
     email?: string;
 }
+export interface PaginationCustomerDto extends PaginationDto{
+    displayename?: string;
+    phone?: string;
+    email?: string;
+}
