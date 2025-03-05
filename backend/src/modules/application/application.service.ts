@@ -66,6 +66,7 @@ export class ApplicationService {
           where: { id: val.id },
           data: {
             ...excludeFields(body, ['contacts']),
+            status:"CLOSED",
             contacts: {
               createMany: { data: body.contacts.map((e) => ({ ...e })) },
             },
