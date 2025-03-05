@@ -53,7 +53,7 @@ export class CustomerService {
             create: {
               username: body.email,
               password: this.crypto.hash(body.password),
-              type: LoginEnum.USER,
+              type: LoginEnum.CUSTOMER,
             },
           },
         },
