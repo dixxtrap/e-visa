@@ -1,4 +1,4 @@
-import {  useForm } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import { AppPasswordInput, AppTextInput } from "../utils/text_input";
 import { SecurityApi } from "../../../core/api/security.api";
 import { LoginDto } from "../../../core/model/login";
@@ -10,7 +10,7 @@ export const SignInForm = ({ switchForm }: { switchForm: () => void }) => {
   const form = useForm<LoginDto>({});
   const _onsubmit = form.onSubmit((data) => {
     console.log(data);
-    login({ ...data });
+    login({ ...data, type: "CUSTOMER" });
   });
   useEffect(() => {
     if (loginState.isSuccess) {
