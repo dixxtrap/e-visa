@@ -31,7 +31,26 @@ export const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
   });
   return (
     <>
-      {(signupState.isUninitialized || signupState.isError) && (
+      {signupState.isSuccess ? (
+        <div className="flex flex-col  gap-5 items-center py-3  rounded-md">
+          <AppSvg
+            {...SvgAssets.check}
+            className="size-24 fill-green-300 stroke-[.3] stroke-green-800"
+          />
+          <div className="text-center">
+            <h1 className="text-3xl pb-4 font-bold">Inscription réussie !</h1>
+
+            <p className="max-w-xl text-lg">
+              Pour finaliser votre inscription, veuillez consulter votre boîte
+              email et cliquer sur le lien de validation.
+            </p>
+            <p className="max-w-xl text-lg">
+              Si vous ne recevez pas l'email dans quelques minutes, pensez à
+              vérifier votre dossier spam.
+            </p>
+          </div>
+        </div>
+      ) : (
         <form className="flex flex-col gap-5" onSubmit={_onsubmit}>
           <AppTextInput
             {...form.getInputProps("displayname")}
@@ -62,26 +81,6 @@ export const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
             Se Connecter
           </button>
         </form>
-      )}
-      {signupState.isSuccess && (
-        <div className="flex flex-col  gap-5 items-center py-3  rounded-md">
-          <AppSvg
-            {...SvgAssets.check}
-            className="size-24 fill-green-300 stroke-[.3] stroke-green-800"
-          />
-          <div className="text-center">
-            <h1 className="text-3xl pb-4 font-bold">Inscription réussie !</h1>
-
-            <p className="max-w-xl text-lg">
-              Pour finaliser votre inscription, veuillez consulter votre boîte
-              email et cliquer sur le lien de validation.
-            </p>
-            <p className="max-w-xl text-lg">
-              Si vous ne recevez pas l'email dans quelques minutes, pensez à
-              vérifier votre dossier spam.
-            </p>
-          </div>
-        </div>
       )}
     </>
   );
