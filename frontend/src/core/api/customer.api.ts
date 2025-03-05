@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BaseResponsePagination, WsMessage } from "../model/base_response";
-import { PaginationCustomerDto, PaginationUserDto } from "../model/pagination";
+import { PaginationCustomerDto } from "../model/pagination";
 import { UserDto } from "../model/user";
 import { CustomerDto } from "../model/customer";
 
