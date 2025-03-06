@@ -82,10 +82,12 @@ export class CustomerService {
   }
   activation(code: string) {
     return this.db.opt
-      .findFirstOrThrow({ where: { code: code } })
+      .findFirstOrThrow({ where: { code: code, staus:"PENDING" } })
       .then((val) => {
-        return new Promise(() => this.crypto.decrypt(code)).then();
-      }).then(throwSuccess);
+        this.db.opt
+        const id = Number(this.crypto.decrypt(code).split("_")[0]);
+        return this.db.login.update({where:{id:id},data:{isActive:true}})
+      }).then(throwSuccess)
   }
   update({ id, body }: { id: number; body: CustomerUpdateDto }) {
     return this.db.customer

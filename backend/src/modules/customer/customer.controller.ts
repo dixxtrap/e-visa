@@ -25,7 +25,9 @@ export class CustomerController {
     return this.service.all(query);
   }
   @Get('activation/:code')
-  activation(@Param("code") code: string) {
+  @Public()
+  activation(@Param('code') code: string) {
+      console.log(code)
     return this.service.activation(code);
   }
   @Get('by_id/:id')

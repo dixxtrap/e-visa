@@ -2,16 +2,16 @@ import { SvgAssets } from "../../../../utils/svg_assets";
 import { AppSvg } from "../../../components/utils/app_svg";
 import { CardItemWidget, CardItemWidgetProps } from "./card_item_widget";
 const classNames = {
-  icon: "group-hover:fill-green-400 fill-amber-50 stroke-1 stroke-neutral-900/70 size-full text-white",
+  icon: "group-hover:fill-green-400 fill-white stroke-[.7] stroke-neutral-900/70 size-full text-white",
   iconContainer:
-    "rounded-full outline-1 outline-black/60 bg-green-300 text-white group-hover:bg-white transition-all duration-200 size-10 p-2",
+    "rounded-full outline-[.5px] outline-slate-900/70 bg-amber-300 text-white group-hover:bg-white transition-all duration-200 size-10 p-2",
 };
 const items: CardItemWidgetProps[] = [
   {
     label: "Vérification de l’état de la demande",
     icon: (
       <div className={classNames.iconContainer}>
-        <AppSvg {...SvgAssets.home} className={classNames.icon} />
+        <AppSvg {...SvgAssets.setting3} className={classNames.icon} />
       </div>
     ),
     onClick: () => {},
@@ -31,7 +31,7 @@ const items: CardItemWidgetProps[] = [
     label: "Politique de confidentialité",
     icon: (
       <div className={classNames.iconContainer}>
-        <AppSvg {...SvgAssets.visaType} className={classNames.icon} />
+        <AppSvg {...SvgAssets.shield} className={classNames.icon} />
       </div>
     ),
     onClick: () => {},
@@ -50,7 +50,7 @@ const items: CardItemWidgetProps[] = [
 ];
 export const CardItems = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 items-stretch px-3 md:px-5 lg:px-10 gap-5 md:gap-10  md:gap-y-20   py-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-stretch px-3 md:px-5 lg:px-10 gap-5 md:gap-10     py-10">
       {items.map((e) => (
         <CardItemWidget key={e.label} {...e} />
       ))}

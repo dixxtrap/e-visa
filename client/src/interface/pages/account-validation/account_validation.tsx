@@ -1,8 +1,13 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { SvgAssets } from "../../../utils/svg_assets";
 import { AppSvg } from "../../components/utils/app_svg";
+import { SecurityApi } from "../../../core/api/security.api";
+import { useEffect } from "react";
 
 export const AccountValidation = () => {
+  const { code } = useParams();
+  const activation = SecurityApi.useActivationQuery(code!);
+
   return (
     <div className="flex items-center justify-center h-screen w-screen ">
       <div className="flex outline gap-5 items-center py-3  rounded-md">

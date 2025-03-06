@@ -3,6 +3,7 @@ import { PassortForm } from "./passport_form";
 import { TripInfo } from "./trip_info";
 import { AppSvg } from "../../utils/app_svg";
 import { SvgAssets } from "../../../../utils/svg_assets";
+import { FinalStep } from "./final_step";
 
 export const ApplicationWidget = ({
   form,
@@ -32,7 +33,7 @@ export const ApplicationWidget = ({
         return (
           <ContactForm
             form={form}
-            next={() => setLabel(4)}
+            next={() => setLabel(5)}
             prevent={() => setLabel(1)}
             close={close}
           />
@@ -47,6 +48,9 @@ export const ApplicationWidget = ({
             close={close}
           />
         );
+        break;
+      case 5:
+        return <FinalStep />;
         break;
       default:
         return <div></div>;

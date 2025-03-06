@@ -1,10 +1,36 @@
-const  items=[{label:"Accueil", path:""},{label:"A propos", path:""},{label:"Suivre ma demande", path:""}, {label:"Assistance", path:""}]
+import clsx from "clsx";
+import { NavLink } from "react-router";
+
+const items = [
+  { label: "Accueil", path: "/" },
+  { label: "A propos", path: "/about" },
+  { label: "Assistance", path: "/assistant" },
+];
 
 export const HeaderNavWeb = () => {
   return (
-    <div className='md:flex hidden  font-inter gap-4'>
-        {items.map(e=><div className="hover:border-b-4  box-borderÒ " key={e.label}>{e.label}</div>)}
-
+    <div className="md:flex hidden gap-10  font-inter ">
+      {items.map((e) => (
+        <NavLink to={e.path} className=" " key={e.label}>
+          {({ isActive }) => (
+            <div className="flex flex-col">
+              <span
+                className={clsx("", {
+                  "font-bold": isActive,
+                })}
+              >
+                {" "}
+                {e.label}
+              </span>
+              <div
+                className={clsx("h-1  rounded-lg", {
+                  "outline   bg-amber-200": isActive,
+                })}
+              ></div>
+            </div>
+          )}
+        </NavLink>
+      ))}
     </div>
-  )
-}
+  );
+};

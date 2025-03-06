@@ -11,8 +11,7 @@ const items = [
   { label: "Selfie ou Photo", key: 2 },
   { label: "Informations du contact", key: 3 },
   { label: "Informations sur le voyage", key: 4 },
-  { label: "Informations sur le voyageur", key: 5 },
-  { label: "Confirmer et Continuer", key: 6 },
+  { label: "Demande Envoyer", key: 5 },
 ];
 export const SendRequestButton = () => {
   const [opened, { open, close }] = useDisclosure();

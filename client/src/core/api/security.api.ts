@@ -18,6 +18,12 @@ export const SecurityApi = createApi({
                 invalidatesTags: ["securityApi"]
             }
         ),
+        activation: build.query<WsMessage, string>(
+            {
+                query: (code) => ({ url: "/customer/activation/"+code,}),
+                providesTags: ["securityApi"]
+            }
+        ),
         signup: build.mutation<WsMessage, SignupDto>(
             {
                 query: (body) => ({ url: "/customer/create", body, method: "POST" }),

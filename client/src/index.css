@@ -23,11 +23,11 @@ body {
   @apply bg-linear-60 from-green-300/90 text-black outline to-green-300;
 }
 .btn.outline {
-  @apply bg-linear-60   to-green-300/10 text-black outline from-green-300/60;
+  @apply bg-linear-60    text-black outline;
 }
 .btn.outline.onblack {
   margin-block: calc(var(--spacing) * 4) !important;
-  @apply outline-green-300/80 outline-[0.5]  text-white border-0  ring-0;
+  @apply outline-slate-300/80 outline-[2px]  text-white border-0  ring-0;
 }
 .btn.outline.onblack:hover {
   @apply text-black outline-green-100;
