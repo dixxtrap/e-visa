@@ -102,6 +102,12 @@ const visaTypePath: SvgPath = {
     <path d="M15.7633 15.7633C13.2622 16.0789 10.7378 16.0789 8.23667 15.7633C7.92111 13.2622 7.92111 10.7378 8.23667 8.23667C10.7378 7.92111 13.2622 7.92111 15.7633 8.23667C16.0789 10.7378 16.0789 13.2622 15.7633 15.7633Z" />,
   ],
 };
+const plusPath: SvgPath = {
+  paths: [
+    <path d="M18 12.75H6C5.59 12.75 5.25 12.41 5.25 12C5.25 11.59 5.59 11.25 6 11.25H18C18.41 11.25 18.75 11.59 18.75 12C18.75 12.41 18.41 12.75 18 12.75Z" />,
+    <path d="M12 18.75C11.59 18.75 11.25 18.41 11.25 18V6C11.25 5.59 11.59 5.25 12 5.25C12.41 5.25 12.75 5.59 12.75 6V18C12.75 18.41 12.41 18.75 12 18.75Z" />,
+  ],
+};
 export namespace SvgAssets {
   export const stickyNote = stickyNotePath;
   export const home = homePaths;
@@ -116,4 +122,5 @@ export namespace SvgAssets {
   export const ship = shipPath;
   export const car = carPath;
   export const shield = shieldPath;
+  export const plus = plusPath;
 }
