@@ -11,13 +11,22 @@ export const CardItemWidget: FC<CardItemWidgetProps> = ({
   comment,
 }) => {
   return (
-    <div className="group outline outline-slate-500/50  min-h-full flex gap-4 transition-all ease-in-out duration-200 tr ring-1 ring-slate-200/20 hover:shadow-2xl bg-slate-200 origin-top-left hover:rotate-0 hover:ring-1  rounded-md ring-inset  flex-col ">
-      <div className="peer flex flex-col    outline outline-slate-500/60 transition-all duration-300 h-full p-4 w-full group-hover:bg-green-300 rotate-1 group-hover:rotate-0 origin-top-left  rounded-md   bg-white">
-        <div className="min-h-16  flex gap-2 items-start lg:pr-16 lg:flex-col  mt-2">
-          <div className="size-10">{icon}</div>
-          <h2 className="md:text-2xl text-base  ">{label}</h2>
+    <div className="card ">
+      <div className="cardContainer">
+        <div className="md:min-h-16  flex gap-2 items-start lg:pr-4 lg:flex-col  mt-2">
+          <div className=" size-10">{icon}</div>
+
+          <h2 className="md:text-2xl hidden md:block text-base  font-bold">
+            {label}
+          </h2>
+          <div className="md:hidden">
+            <h2 className="md:text-2xl  text-base  font-bold">{label}</h2>
+            <div className="grow   text-sm md:text-base ">
+              <p>{comment}</p>
+            </div>
+          </div>
         </div>
-        <div className="grow text-center md:text-left  text-sm md:text-base ">
+        <div className="grow hidden md:block   text-sm md:text-base ">
           <p>{comment}</p>
         </div>
       </div>

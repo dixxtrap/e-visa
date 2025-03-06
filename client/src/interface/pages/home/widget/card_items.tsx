@@ -2,9 +2,8 @@ import { SvgAssets } from "../../../../utils/svg_assets";
 import { AppSvg } from "../../../components/utils/app_svg";
 import { CardItemWidget, CardItemWidgetProps } from "./card_item_widget";
 const classNames = {
-  icon: "group-hover:fill-green-400 fill-white stroke-[.7] stroke-neutral-900/70 size-full text-white",
-  iconContainer:
-    "rounded-full outline-[.5px] outline-slate-900/70 bg-amber-300 text-white group-hover:bg-white transition-all duration-200 size-10 p-2",
+  icon: "icon",
+  iconContainer: "iconContainer",
 };
 const items: CardItemWidgetProps[] = [
   {
@@ -50,7 +49,7 @@ const items: CardItemWidgetProps[] = [
 ];
 export const CardItems = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-stretch px-3 md:px-5 lg:px-10 gap-5 md:gap-10     py-10">
+    <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-stretch px-3 md:px-5 lg:px-10 gap-5 md:gap-10     py-10">
       {items.map((e) => (
         <CardItemWidget key={e.label} {...e} />
       ))}
