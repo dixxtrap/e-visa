@@ -3,7 +3,7 @@ import { FaqItems } from "./faq_items";
 
 export const Faq = () => {
   return (
-    <div className="grid grid-cols-1 px-4 md:grid-cols-2 py-5 md:py-10  md:px-20">
+    <div className="grid grid-cols-1 px-4 md:grid-cols-2 py-5  md:py-10  md:px-20">
       <div className="">
         <img
           src={img_woman_trip}

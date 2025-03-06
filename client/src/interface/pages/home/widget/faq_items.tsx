@@ -7,22 +7,22 @@ const faqs: { label: string; description: string }[] = [
   {
     label: "Quels documents dois-je fournir pour ma demande de visa ?",
     description:
-      "👉 Vous devez fournir un passeport valide, une photo d’identité récente, un billet d’avion aller-retour, une preuve d’hébergement et tout document complémentaire selon le type de visa demandé",
+      " Vous devez fournir un passeport valide, une photo d’identité récente, un billet d’avion aller-retour, une preuve d’hébergement et tout document complémentaire selon le type de visa demandé",
   },
   {
     label: "Combien coûte la demande de visa ?",
     description:
-      "👉 Les frais de visa varient selon la durée et le type de visa choisi. Vous pouvez consulter les tarifs directement sur notre site lors de votre demande en ligne.",
+      " Les frais de visa varient selon la durée et le type de visa choisi. Vous pouvez consulter les tarifs directement sur notre site lors de votre demande en ligne.",
   },
   {
     label: "J’ai oublié mon identifiant/mot de passe, comment le récupérer ?",
     description:
-      '👉 Cliquez sur "Mot de passe oublié" sur la page de connexion et suivez les instructions pour réinitialiser votre mot de passe via votre adresse e-mail',
+      ' Cliquez sur "Mot de passe oublié" sur la page de connexion et suivez les instructions pour réinitialiser votre mot de passe via votre adresse e-mail',
   },
   {
     label: "Comment savoir si ma demande a été acceptée ou refusée ?",
     description:
-      "👉 Vous recevrez une notification par e-mail une fois votre demande traitée. Vous pouvez également suivre le statut en temps réel sur notre site en vous connectant à votre compte.",
+      " Vous recevrez une notification par e-mail une fois votre demande traitée. Vous pouvez également suivre le statut en temps réel sur notre site en vous connectant à votre compte.",
   },
 ];
 
@@ -61,9 +61,9 @@ export const FaqItem = ({
           initial={{ height: 0 }}
           animate={{ height: "max-content", type: "" }}
           transition={{ duration: 0.1, type: "tween", damping: 15 }}
-          className="relative  px-3 overflow-hidden h-min"
+          className="relative  px-3 pt-5 overflow-hidden h-min"
         >
-          <span className="text-sm md:text-base">{description}</span>
+          <span className="text-sm  md:text-base">{description}</span>
         </motion.div>
       )}
     </div>
@@ -73,7 +73,7 @@ export const FaqItem = ({
 export const FaqItems = () => {
   const [current, setCurrent] = useState(0);
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className="flex flex-col gap-5 ">
       {faqs.map((e, index) => (
         <FaqItem
           setCurrent={() => {

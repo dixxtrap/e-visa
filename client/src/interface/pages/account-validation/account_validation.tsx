@@ -11,10 +11,10 @@ export const AccountValidation = () => {
     <div className="flex items-center justify-center h-screen w-screen ">
       <div className="flex outline gap-5 items-center py-3  rounded-md">
         <AppSvg
-          {...SvgAssets.check}
+          {...(activation.isSuccess ? SvgAssets.check : SvgAssets.plus)}
           className="size-24 fill-green-300 stroke-[.3] stroke-green-800"
         />
-        {activation.isSuccess && (
+        {activation.isError && (
           <div>
             <h1 className="text-3xl font-bold">Validation échouée</h1>
             <p className="max-w-xl text-lg">
@@ -25,7 +25,7 @@ export const AccountValidation = () => {
             <Link to="/">Retour à l'accueil</Link>
           </div>
         )}
-        {activation.isError && (
+        {activation.isSuccess && (
           <div>
             <h1 className="text-3xl font-bold">Compte validé !</h1>
             <p className="max-w-xl text-lg">
