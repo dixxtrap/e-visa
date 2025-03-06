@@ -89,6 +89,7 @@ export class CustomerService {
         return this.db.login.update({where:{id:id},data:{isActive:true}})
       }).then(throwSuccess)
   }
+
   update({ id, body }: { id: number; body: CustomerUpdateDto }) {
     return this.db.customer
       .update({
