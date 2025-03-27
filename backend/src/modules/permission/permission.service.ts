@@ -16,7 +16,7 @@ export class PermissionService implements OnModuleInit {
  async  createPermissionModule() {
     return this.db.module.findMany().then((val) => {
       return Promise.all(
-        val.map((m) => {
+        val.map((m) => { 
           return Promise.all(
             [
               PermissionActionEnum.MANAGE,
@@ -28,7 +28,7 @@ export class PermissionService implements OnModuleInit {
             ].map((action) => {
               this.db.permission
                 .upsert({
-                  create: {
+                  create: { 
                     action,
                     code: `${action}_${m.name}`,
                     moduleId: m.id,
@@ -74,7 +74,7 @@ export class PermissionService implements OnModuleInit {
             await this.db.permission.count({
               where: whereClause,
             }),
-            query.perpage,
+            query.perpage, 
           ),
         );
     }

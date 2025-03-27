@@ -48,37 +48,39 @@ export class CryptoService {
   //   console.log('Clé Publique dérivée de la clé Privée:', publicKeyPem);
   // }
   verifiy(text, hashedText) {
-
     return this.hash(text) === hashedText;
   }
   createKey() {
-    const salt = 'monSelUnique';
-    const key = crypto.scryptSync(process.env.JWT_SECRET_2, salt, 32);
-    const iv = crypto.randomBytes(16)
+    const key = crypto.scryptSync(
+      process.env.JWT_SECRET,
+      process.env.CRYPTO_KEY,
+      32,
+    );
+    const iv = crypto.randomBytes(16);
     return {
-      key:key.toString("hex")
-      ,iv:iv.toString("hex")
-    }
+      key: key.toString('hex'),
+      iv: iv.toString('hex'),
+    };
   }
   encrypt(text) {
-    const key = Buffer.from(process.env.SECRET_KEY, 'hex');
-    const iv = Buffer.from(process.env.SECRET_IV, 'hex');
+    const key = Buffer.from(process.env.CRYPTO_ENCRYPT_KEY, 'hex');
+    const iv = Buffer.from(process.env.CRYPTO_ENCRYPT_IV, 'hex');
     // Génère un vecteur d'initialisation aléatoire
     const cipher = crypto.createCipheriv(algorithm2, key, iv);
     let encrypted = cipher.update(text, 'utf8', 'hex');
     encrypted += cipher.final('hex');
     // On concatène l'IV et le texte chiffré pour pouvoir déchiffrer par la suite
-    return  encrypted;
+    return encrypted;
   }
 
   // Fonction pour déchiffrer un texte
   decrypt(encryptedText) {
-    const iv = Buffer.from(process.env.SECRET_IV, 'hex');
-    const key = Buffer.from(process.env.SECRET_KEY, 'hex');
+    const iv = Buffer.from(process.env.CRYPTO_ENCRYPT_KEY, 'hex');
+    const key = Buffer.from(process.env.CRYPTO_ENCRYPT_IV, 'hex');
     const decipher = crypto.createDecipheriv(algorithm2, key, iv);
     let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
-    return decrypted
+    return decrypted;
   }
   // crypt(text: string) {
   //   const publicPath = path.join('public.pem');

@@ -60,7 +60,7 @@ export const Navigation = () => {
               <svg
                 viewBox={e.viewBox ?? "0 0 24 24"}
                 stroke="black"
-                strokeWidth={1}
+                strokeWidth={.8}
                 className={clsx("size-5  ", {
                   " fill-amber-500 ": isActive,
                   "stroke-green-800 fill-green-500/70": !isActive,

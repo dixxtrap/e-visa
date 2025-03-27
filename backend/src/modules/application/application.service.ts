@@ -7,6 +7,8 @@ import { throwSuccess } from 'src/exception/ws_message';
 import { BaseResponse } from 'src/utils/base_response';
 import { ContactsDto } from 'src/dto/contacts.dto';
 import { RoadTripInfoDto } from 'src/dto/road_trip_info.dto';
+import { PaginationDto } from 'src/dto/pagination.dto';
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 @Injectable()
 export class ApplicationService {
@@ -15,9 +17,15 @@ export class ApplicationService {
     return this.getPanding({ by }).then(BaseResponse.success);
   }
   getPanding({ by }: { by: CurrentUserDto }) {
+    console.log(by);
     return this.db.application.findFirstOrThrow({
+      where: { customerId: by.id },
       include: { passport: true, contacts: true, roadTripInfo: true },
     });
+  }
+
+  getPerPage({ query }: { query: PaginationDto }) {
+    return this.db.application.findMany();
   }
   addSelfi({ by, file }: { by: CurrentUserDto; file: Express.Multer.File }) {
     this.getPanding({ by }).then((val) => {
@@ -49,13 +57,15 @@ export class ApplicationService {
         },
       })
       .then((val) => {
-        return this.db.application.create({
-          data: {
-            customerId: by.id,
-            passportid: val.id,
-            visaTypeId: 1,
-          },
-        });
+        return this.db.application
+          .create({
+            data: {
+              customerId: by.id,
+              passportid: val.id,
+              visaTypeId: 1,
+            },
+          })
+          .then((val) => val);
       })
       .then(throwSuccess);
   }
@@ -66,7 +76,7 @@ export class ApplicationService {
           where: { id: val.id },
           data: {
             ...excludeFields(body, ['contacts']),
-            status:"CLOSED",
+            status: 'CLOSED',
             contacts: {
               createMany: { data: body.contacts.map((e) => ({ ...e })) },
             },
@@ -79,7 +89,7 @@ export class ApplicationService {
     return this.getPanding({ by })
       .then((val) => {
         return this.db.roadTripInfo.create({
-          data: { ...body, applicationId:val.id ,  },
+          data: { ...body, applicationId: val.id },
         });
       })
       .then(throwSuccess);

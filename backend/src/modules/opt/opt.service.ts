@@ -7,7 +7,8 @@ import { Injectable } from "@nestjs/common/decorators/core/injectable.decorator"
 export  class OptService {
     constructor(private db: DatabaseService, private readonly crypto: CryptoService) { }
     getKey() {
-        return this.crypto.hash("Kalanji2024")
+        // return this.crypto.hash("Kalanji2024")
+        return this.crypto.createKey()
     }
     all(query:PaginationSearchDto ) {
         return this.db.opt.findMany().then(val=>BaseResponse.success(val))

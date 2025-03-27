@@ -13,6 +13,10 @@ export class PaginationSearchDto extends PaginationDto {
   @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
   search: string;
 }
+export class PaginationApplicationDto extends PaginationDto {
+  @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
+  phone: string;
+}
 export class PaginationUserDto extends PaginationDto {
   @IsValidStringOptionalApi({ apiPropertyOptions: { required: false } })
   displayname: string;

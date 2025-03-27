@@ -15,7 +15,7 @@ export const PlaceAddressInput = ({
   setKey(import.meta.env.VITE_GOOGLE_KEY);
   const [useMyPosition, setUseMyPosition] = useState<boolean>(false);
   const [isFirst, setIsFirst] = useState<boolean>(true);
-  const [address, setAddress] = useState(form.getValues().address);
+  const [address, setAddress] = useState(form.getValues().address??'');
 
   const [prediction, setPredictiuon] = useState<Array<any>>([]);
   const [debouncedAddress] = useDebouncedValue(address, 200);
@@ -95,8 +95,8 @@ export const PlaceAddressInput = ({
       <Checkbox
         checked={useMyPosition}
         variant="filled"
-        c={"secondary"}
-        color="secondary"
+        c={"black"}
+        color="black"
         pb={4}
         label="utiliser mon adresse actuelle"
         classNames={{ label: "text-slate-900" }}

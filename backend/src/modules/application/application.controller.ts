@@ -44,7 +44,7 @@ export class ApplicationController {
     @Body() body: RoadTripInfoDto,
     @CurrentUser() by: CurrentUserDto,
   ) {
-      console.log(body)
+    console.log(body);
     return this.service.addRoadTripInfo({ body, by });
   }
   @Get('/pending')

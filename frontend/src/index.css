@@ -17,10 +17,10 @@ body {
 }
 .app_table td,
 .app_table th {
-  @apply text-left  whitespace-nowrap   border-y border-slate-300;
+  @apply text-left  whitespace-nowrap   border-y border-blue-50;
 }
 .app_table tbody tr:hover {
-  @apply bg-amber-500/40;
+  @apply bg-slate-50;
 }
 .app_table tr > td:last-child > div:last-child {
   @apply flex items-start justify-end      font-medium gap-x-2;

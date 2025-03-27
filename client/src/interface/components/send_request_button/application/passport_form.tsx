@@ -8,11 +8,19 @@ import { getFormInputAttr } from "../../utils/get_form_input_attribute";
 import { PassportDto } from "../../../../core/model/application";
 
 export const PassortForm: FC<ApplicationPageProps> = (props) => {
-  const form = useForm<Partial<PassportDto>>();
+  const form = useForm<Partial<PassportDto>>({
+    mode: "controlled",
+    initialValues: {
+      displayname: "",
+      reference: "",
+      validity: undefined,
+      birthdate: undefined,
+    },
+  });
   const passportImageHandler = handlePreviewV2({});
   const [isLoading, setIsLoading] = useState(false);
   const _onsubmit = form.onSubmit((data) => {
-    if (passportImageHandler.file && isLoading === true) {
+    if (passportImageHandler.file && isLoading === false) {
       console.log(data);
       const formData = new FormData();
       formData.append("file", passportImageHandler.file);
@@ -56,6 +64,8 @@ export const PassortForm: FC<ApplicationPageProps> = (props) => {
             id="passportImage"
             hidden
           />
+          {JSON.stringify(form.errors)}
+          {passportImageHandler.preview && passportImageHandler.file?.name}
           <span className="md:text-2xl  text-xl">
             {passportImageHandler.preview ? (
               <img

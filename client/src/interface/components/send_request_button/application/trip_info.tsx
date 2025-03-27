@@ -20,6 +20,8 @@ export const TripInfo: FC<ApplicationPageProps> = ({ next, ...props }) => {
   const form = useForm<RoadTripInfoDto>({
     initialValues: {
       motif: "",
+      arrivalLocationType: "air",
+      departureLocationType: "air",
     },
     validate: {
       arrivalLocationCompanyIdentify: isNotEmpty(),
@@ -48,6 +50,7 @@ export const TripInfo: FC<ApplicationPageProps> = ({ next, ...props }) => {
         <div className="flex flex-col gap-3 ">
           <h2 className={styles.title}>Motif Du Voyage</h2>
         </div>
+        {JSON.stringify(form.errors)}
         <AppSelect
           label="motif du voyage"
           style={{ zIndex: 100 }}

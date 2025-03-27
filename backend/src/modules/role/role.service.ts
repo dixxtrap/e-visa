@@ -14,27 +14,10 @@ import { PaginationDto, PaginationSearchDto } from 'src/dto/pagination.dto';
 import { contains } from 'class-validator';
 
 @Injectable()
-export class RoleService implements OnModuleInit {
+export class RoleService  {
   constructor(private readonly db: DatabaseService) {}
-  onModuleInit() {
-    this.createAdminRole();
-  }
+  
 
-  createAdminRole() {
-    console.log('=========create role adsmin=============');
-    return this.db.role
-      .upsert({
-        create: { name: 'super_admin' },
-        update: {},
-        where: { name: 'super_admin' },
-      })
-      .then((val) => {
-        console.log(val);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
   update({ body, id }: { body: RoleUpdateDto; id: number }) {
     return this.db.role
       .update({

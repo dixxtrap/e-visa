@@ -47,8 +47,8 @@ const AppTablePagination: FC<AppTablePaginationProps> = ({
       >
         <Table className="w-full app_table overflow-hidden p-0 m-0 ">
           <Table.Thead
-            className={clsx("sticky border-b bg-amber-500/90  h-14  top-0", {
-              "shadow-sm bg-linear-30 from-amber-500 to-amber-400 ": scrolled,
+            className={clsx("sticky border-b bg-slate-100/90 border-b h-14  top-0", {
+              "shadow-sm bg-linear-30 from-slate-50 to-slate-40 ": scrolled,
             })}
           >
             <Table.Tr className={clsx("border-b backdrop-blur-2xl")}>

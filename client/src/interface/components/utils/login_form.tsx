@@ -31,7 +31,7 @@ export const LoginForm: FC<LoginFormProps> = ({ children }) => {
           </span>
         }
         opened={opened}
-        onClose={close}
+        onClose={() => {}}
       >
         {isSignup ? (
           <SignupForm switchForm={() => setIsSignup(false)} />
