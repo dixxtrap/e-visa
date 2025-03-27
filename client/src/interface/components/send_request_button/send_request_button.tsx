@@ -78,8 +78,9 @@ export const SendRequestButton = () => {
               "Demarer votre demande"}
           </h2>
         }
+        closeButtonProps={{ onClick: close }}
         opened={opened}
-        onClose={close}
+        onClose={() => {}}
       >
         {label == 0 ? (
           <div className="grid grid-cols-1 pt-2  md:grid-cols-2  gap-2 md:gap-5 ">

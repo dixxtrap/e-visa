@@ -11,7 +11,7 @@ type LoginFormProps = {
 };
 export const LoginForm: FC<LoginFormProps> = ({ children }) => {
   const profile = SecurityApi.useProfileQuery();
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { open }] = useDisclosure(false);
   const [isSignup, setIsSignup] = useState(false);
   return (
     <>
@@ -30,6 +30,7 @@ export const LoginForm: FC<LoginFormProps> = ({ children }) => {
             {import.meta.env.VITE_APP_NAME}
           </span>
         }
+        closeButtonProps={{ onClick: close }}
         opened={opened}
         onClose={() => {}}
       >

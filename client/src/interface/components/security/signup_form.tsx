@@ -7,8 +7,6 @@ import { excludeFields } from "../../../utils/exclude_key";
 import { PlaceAddressInput } from "../utils/google_place_address";
 import { AppSvg } from "../utils/app_svg";
 import { SvgAssets } from "../../../utils/svg_assets";
-import { fromAddress } from "react-geocode";
-import { useEffect } from "react";
 import { ErrorResponse } from "../utils/error_response";
 
 export const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
