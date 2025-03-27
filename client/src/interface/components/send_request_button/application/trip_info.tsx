@@ -10,6 +10,7 @@ import { TripReasonList } from "../../../../core/data/trip_reason";
 import { getFormInputAttr } from "../../utils/get_form_input_attribute";
 import { PlaceAddressInput } from "../../utils/google_place_address";
 import { ApplicationApi } from "../../../../core/api/application.api";
+import { ErrorResponse } from "../../utils/error_response";
 const styles = {
   title: "text-2xl font-bold",
   gridInput: "grid grid-cols-1 gap-3 lg:grid-cols-2",
@@ -46,11 +47,13 @@ export const TripInfo: FC<ApplicationPageProps> = ({ next, ...props }) => {
       onSubmit={_onsubmit}
       className="  h-full min-h-[80vh]  flex flex-col  "
     >
+      <ErrorResponse {...addRoadTripState} />
+
       <div className="flex flex-col  gap-5">
         <div className="flex flex-col gap-3 ">
           <h2 className={styles.title}>Motif Du Voyage</h2>
         </div>
-        {JSON.stringify(form.errors)}
+        {/* {JSON.stringify(form.errors)} */}
         <AppSelect
           label="motif du voyage"
           style={{ zIndex: 100 }}

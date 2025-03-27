@@ -11,6 +11,7 @@ import { getFormInputAttr } from "../../utils/get_form_input_attribute";
 import { PlaceAddressInput } from "../../utils/google_place_address";
 import { useSetState } from "@mantine/hooks";
 import { ApplicationApi } from "../../../../core/api/application.api";
+import { ErrorResponse } from "../../utils/error_response";
 const initValue = {
   displayname: "",
   phone: "",
@@ -91,6 +92,7 @@ export const ContactForm: FC<ApplicationPageProps> = (props) => {
     <form onSubmit={_onsubmit} className="flex-col min-h-[80vh]   flex gap-5">
       <span className="text-2xl font-bold">Information Personnelles</span>
       <div className="grid gap-3 grid-cols-1  lg:grid-cols-2">
+        <ErrorResponse {...addContactState} />
         <AppTextInput
           {...getFormInputAttr({ form, path: "phone" })}
           label={"Téléphone"}
